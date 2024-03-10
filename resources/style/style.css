@@ -168,7 +168,7 @@ ol li {
 }
 
 #logo {
-  width: 910px;
+  width: 950px;
   position: relative;
   height: 100px;
   background: transparent;
@@ -187,8 +187,7 @@ ol li {
 #logo_text h1 a,
 #logo_text h1 a:hover {
   padding: 0px 0 0 0;
-  color: black;
-  /* color: #A8AA94; */
+  color: #c9cb45;
   font-size: 150%;
   letter-spacing: 0.1em;
   text-decoration: none;
@@ -209,14 +208,11 @@ ol li {
   color: #c9cb45;
 }
 
-/* ============================================================================================= */
-
 #menubar {
   height: 46px;
-  width: 950px;
+  width: 975px;
   margin: 1px auto 0 auto;
   background: rgb(70, 70, 70);
-  /* background: transparent url(tab.png); */
 }
 
 ul#menu {
@@ -259,7 +255,7 @@ ul#menu li a:hover {
 }
 
 #site_content {
-  width: 925px;
+  width: 950px;
   overflow: hidden;
   margin: 44px auto 0 auto;
   padding: 10px 0 0 25px;
@@ -347,7 +343,7 @@ ul#menu li a:hover {
 }
 
 #footer {
-  width: 950px;
+  width: 975px;
   font: normal 90% 'trebuchet ms', arial, sans-serif;
   height: 65px;
   padding: 20px 0 5px 0;
