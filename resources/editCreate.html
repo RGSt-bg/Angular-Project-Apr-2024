@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Furniture Shop</title>
+    <meta name="description" content="Furnitures Shop" />
+    <meta name="keywords" content="furnitures" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="header">
+        <div id="logo">
+          <div id="logo_text">
+            <!-- class="logo_colour", allows you to change the colour of the text -->
+            <h1>
+              <a href="index.html">Furniture <span class="logo_colour">Shop</span></a>
+            </h1>
+            <h2>Simple. Comfortable. At affordable prices.</h2>
+          </div>
+        </div>
+        <div id="menubar">
+          <ul id="menu">
+            <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+            <li class="selected"><a href="index.html">Home</a></li>
+            <li><a href="furnitures.html">Furnitures</a></li>
+            <li><a href="furnitureList.html">New Products</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="site_content">
+        <div id="sidebar_container">
+          <div class="sidebar">
+            <div class="sidebar_top"></div>
+            <div class="sidebar_item">
+              <!-- insert your sidebar items here -->
+              <h3>Latest News from Furniture's World</h3>
+              <h4>Home Furniture Design Trends</h4>
+              <h5>March 2024</h5>
+              <p>
+                2024 is all about furniture that doesn't just look good......
+                <br>
+                <a href="https://www.modernfurnishings.com/blogs/news/2024-home-furniture-design-trends-elevate-your-space-with-modern-furnishings">read more</a>
+              </p>
+            </div>
+            <div class="sidebar_base"></div>
+          </div>
+          <div class="sidebar">
+            <div class="sidebar_top"></div>
+            <div class="sidebar_item">
+              <h3>World Featured Brands</h3>
+              <ul>
+                <li><a href="https://www.ikea.com/">IKEA</a></li>
+                <li><a href="https://rh.com">Restoration Hardware</a></li>
+                <li><a href="https://www.williams-sonoma.com/">Williams Sonoma</a></li>
+                <li><a href="https://www.la-z-boy.com/v">La-Z-Boy Furniture Galleries</a></li>
+                <li><a href="https://www.americansignaturefurniture.com/">American Signature</a></li>
+                <li><a href="https://www.kartell.com/">Kartell</a></li>
+                <li><a href="https://www.roche-bobois.com/">Roche Bobois</a></li>
+              </ul>
+            </div>
+            <div class="sidebar_base"></div>
+          </div>
+          <div class="sidebar">
+            <div class="sidebar_top"></div>
+            <div class="sidebar_item">
+              <h3>Search</h3>
+              <form method="post" action="#" id="search_form">
+                <p>
+                  <input
+                    class="search"
+                    type="text"
+                    name="search_field"
+                    placeholder="Enter keywords....."
+                  />
+                  <input
+                    name="search"
+                    type="image"
+                    style="border: 0; margin: 0 0 -9px 5px"
+                    src="style/search.png"
+                    alt="Search"
+                    title="Search"
+                  />
+                </p>
+              </form>
+            </div>
+            <div class="sidebar_base"></div>
+          </div>
+        </div>
+        <div id="content">
+          <!-- insert the page content here -->
+          <h1><b><i>{{actionType}} Create/Edit Furniture</i></b></h1>
+          <form action="" method="post">
+            <div class="form_settings">
+              <p>
+                <span>Name*</span><input class="contact" type="text" name="name" value="" />
+              </p>
+              <p>
+                <span>Category*</span><input class="contact" type="text" name="category" value="" />
+              </p>
+              <p>
+                <span>Color</span><input class="contact" type="text" name="color" value="" />
+              </p>
+              <p>
+                <span>Material</span><input class="contact" type="text" name="material" value="" />
+              </p>
+              <p>
+                <span>Price*</span><input class="contact" type="number" name="price" value="" />
+              </p>
+              <p>
+                <span>Description*</span>
+                <textarea
+                  class="contact textarea"
+                  rows="8"
+                  cols="50"
+                  name="description">
+                </textarea>
+              </p>
+              <p style="padding-top: 15px">
+                <span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="Edit" />
+              </p>
+              <p>* - required</p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="footer">
+        <p>
+          <a href="index.html">Home</a> | <a href="furnitures.html">Furnitures</a> |
+          <a href="furnitureList.html">New Products</a> |
+          <a href="about.html">About Us</a> |
+          <a href="contact.html">Contact Us</a>
+        </p>
+        <p>
+          Copyright &copy; simplestyle_3 |
+          <a href="http://validator.w3.org/check?uri=referer">HTML5</a> |
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> |
+          <a href="http://www.html5webtemplates.co.uk">HTML5 Web Templates</a>
+        </p>
+      </div>
+      <p>&nbsp;</p>
+    </div>
+  </body>
+</html>
