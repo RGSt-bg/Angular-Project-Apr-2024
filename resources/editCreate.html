@@ -101,7 +101,16 @@
                 <span>Name*</span><input class="contact" type="text" name="name" value="" />
               </p>
               <p>
-                <span>Category*</span><input class="contact" type="text" name="category" value="" />
+                <!-- <span>Category*</span><input class="contact" type="" name="category" value="" /> -->
+                <span>Category*</span>
+                <select class="contact"name="category">
+                  <option value="{{category}}">..........</option>
+                  <option value="Bed">Bed</option>
+                  <option value="Chair">Chair</option>
+                  <option value="Sofa">Sofa</option>
+                  <option value="Table">Table</option>
+                  <option value="Wardrobe">Wardrobe</option>
+                </select>
               </p>
               <p>
                 <span>Color</span><input class="contact" type="text" name="color" value="" />
@@ -110,21 +119,20 @@
                 <span>Material</span><input class="contact" type="text" name="material" value="" />
               </p>
               <p>
-                <span>Price*</span><input class="contact" type="number" name="price" value="" />
+                <span>Price* (positive number)</span><input class="contact" type="number" name="price" value="" />
               </p>
               <p>
-                <span>Description*</span>
+                <span>Description* (minimum 20 characters)</span>
                 <textarea
                   class="contact textarea"
                   rows="8"
                   cols="50"
-                  name="description">
-                </textarea>
+                  name="description"></textarea>
               </p>
               <p style="padding-top: 15px">
                 <span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="Edit" />
               </p>
-              <p>* - required</p>
+              <p>* - required field</p>
             </div>
           </form>
         </div>
