@@ -379,6 +379,11 @@ ul#menu li a:hover {
   font: 100% arial, sans-serif;
 }
 
+.searchImg {
+  border: 0;
+  margin: 0 0 -9px 5px;
+}
+
 .form_settings {
   margin: 15px 0 0 0;
 }

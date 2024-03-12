@@ -1,10 +1,10 @@
-const stoneService = require('../services/stoneService');
+const furnitureService = require('../services/furnitureService');
 
 exports.isProductOwner = async (req, res, next) => {
-    const stone = await stoneService.getOne(req.params.stoneId);
+    const stone = await furnitureService.getOne(req.params.stoneId);
 
     if (stone.owner != req.user?._id) {
-        return res.redirect('/stone/dashboard');
+        return res.redirect('/furniture/furnitures');
     };
 
     next();

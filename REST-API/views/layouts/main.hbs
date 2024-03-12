@@ -49,16 +49,22 @@
                     <div id="menubar">
                         <ul id="menu">
                             <!-- put class="selected" in the "li" tag for the selected page - to highlight which page you're on -->
-                            <li class="selected"><a href="/">Home</a></li>
-                            <li><a href="furnitures.html">Furnitures</a></li>
-                            <li><a href="furnitureList.html">New Products</a></li>
-                            <li><a href="editCreate.html">Create Furniture</a></li>
-                            <li><a href="createCategory.html">Create Category</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/furniture/furnitures">Furnitures</a></li>
+                            <li><a href="/furniture/furnitureList">New Products</a></li>
+                            {{#if isAuthenticated}}
+                            <li><a href="/furniture/create">Create Furniture</a></li>
+                            <li><a href="/furniture/createCategory">Create Category</a></li>
+                            {{/if}}
                             <li><a href="/contact">Contacts</a></li>
                             <li><a href="/about">About</a></li>
+                            {{#unless isAuthenticated}}
                             <li><a href="/auth/register">Register</a></li>
                             <li><a href="/auth/login">Login</a></li>
+                            {{/unless}}
+                            {{#if isAuthenticated}}
                             <li><a href="/auth/logout">Logout</a></li>
+                            {{/if}}
                         </ul>
                     </div>
                 </div>
@@ -89,12 +95,9 @@
                         <ul>
                             <li><a target="_blank" href="https://www.ikea.com/">IKEA</a></li>
                             <li><a target="_blank" href="https://rh.com">Restoration Hardware</a></li>
-                            <li><a target="_blank" href="https://www.williams-sonoma.com/">Williams Sonoma</a>
-                            </li>
-                            <li><a target="_blank" href="https://www.la-z-boy.com/v">La-Z-Boy Furniture
-                                    Galleries</a></li>
-                            <li><a target="_blank" href="https://www.americansignaturefurniture.com/">American
-                                    Signature</a></li>
+                            <li><a target="_blank" href="https://www.williams-sonoma.com/">Williams Sonoma</a></li>
+                            <li><a target="_blank" href="https://www.la-z-boy.com/v">La-Z-Boy Furniture Galleries</a></li>
+                            <li><a target="_blank" href="https://www.americansignaturefurniture.com/">American Signature</a></li>
                             <li><a target="_blank" href="https://www.kartell.com/">Kartell</a></li>
                             <li><a target="_blank" href="https://www.roche-bobois.com/">Roche Bobois</a></li>
                         </ul>
@@ -108,8 +111,7 @@
                         <form method="post" action="#" id="search_form">
                             <p>
                                 <input class="search" type="text" name="search" placeholder="Enter keywords....." />
-                                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px"
-                                    src="/images/search.png" alt="Search" title="Search" />
+                                <input class="searchImg" type="image" name="search" src="/images/search.png" alt="Search" title="Search" />
                             </p>
                         </form>
                     </div>
@@ -123,10 +125,10 @@
             <div id="footer">
                 <p>
                     <a href="/">Home</a> | 
-                    <a href="furnitures">Furnitures</a> |
-                    <a href="furnitureList">New Products</a> |
-                    <a href="about">About Us</a> |
-                    <a href="contact">Contact Us</a>
+                    <a href="/furniture/furnitures">Furnitures</a> |
+                    <a href="/furniture/furnitureList">New Products</a> |
+                    <a href="/about">About Us</a> |
+                    <a href="/contact">Contact Us</a>
                 </p>
                 <p>
                     Copyright &copy; simplestyle_3 |

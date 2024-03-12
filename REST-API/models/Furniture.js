@@ -7,9 +7,9 @@ const furnitureSchema = new mongoose.Schema({
         minLength: 4,
     },
     category: {
+        // type: mongoose.Types.ObjectId,
         type: String,
-        required: [true, 'Category is required'],
-        minLength: 3,
+        ref: 'Category'
     },
     image: {
         type: String,
@@ -18,13 +18,11 @@ const furnitureSchema = new mongoose.Schema({
     },
     color: {
         type: String,
-        required: false,
-        minLength: 2,
+        required: false
     },
     material: {
         type: String,
-        required: false,
-        minLength: 3,
+        required: false
     },
     price: {
         type: Number,

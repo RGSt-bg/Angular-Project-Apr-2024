@@ -1,0 +1,40 @@
+<main>
+    <div id="content">
+        <h1><b><i>{{actionType}} Furniture</i></b></h1>
+        <form action="" method="post">
+            <div class="form_settings">
+                <p>
+                    <span>Name*</span><input class="contact" type="text" name="name" value="{{name}}" />
+                </p>
+                <p>
+                    <span>Category*</span>
+                    <select class="contact" name="category">
+                    {{#each category}}
+                        <option value="{{category}}">{{category}}</option>
+                    {{/each}}
+                    </select>
+                </p>
+                <p>
+                    <span>Image*</span><input class="contact" type="text" name="image" value="{{image}}" />
+                </p>
+                <p>
+                    <span>Color</span><input class="contact" type="text" name="color" value="{{color}}" />
+                </p>
+                <p>
+                    <span>Material</span><input class="contact" type="text" name="material" value="{{material}}" />
+                </p>
+                <p>
+                    <span>Price* (positive number)</span><input class="contact" type="number" name="price" value="{{price}}" />
+                </p>
+                <p>
+                    <span>Description* (minimum 20 characters)</span>
+                    <textarea class="description textarea" rows="8" cols="50" name="description">{{description}}</textarea>
+                </p>
+                <p style="padding-top: 15px">
+                    <span>&nbsp;</span><input class="submit" type="submit" name="contact_submitted" value="{{actionType}}" />
+                </p>
+                <p>* - required field</p>
+            </div>
+        </form>
+    </div>
+</main>

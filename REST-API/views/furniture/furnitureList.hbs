@@ -1,0 +1,58 @@
+<main>
+    <div id="content">
+        <h1>
+            <b><i>New Products</i></b>
+        </h1>
+        <p>
+            Here you can find our latest products - elegant, comfortable,
+            functional ...
+        </p>
+
+        <section id="newProducts">
+            <!-- Display a li with information about every furniture (if any)-->
+            <ul class="card-wrapper">
+                <li class="card">
+                    <img src="./style/Sofa-Antony.jpg" />
+                    <p><strong>Name: </strong><span class="name">{{name}}</span></p>
+                    <p>
+                        <strong>Category: </strong><span class="category">{{category}}</span>
+                    </p>
+                    <p>
+                        <strong>Price:</strong><span class="formula">{{price}}</span>
+                    </p>
+                    <a class="details-btn" href="details.html">Details</a>
+                </li>
+            </ul>
+            <!-- Display an h2 if there are no furnitures -->
+            <!-- <div id="no-post">
+                <h2>Sorry, there are no furnitures!</h2>
+            </div> -->
+        </section>
+    </div>
+</main>
+
+
+{{!-- <section id="dashboard">
+    <h2>Minerals and Gems</h2>
+    <ul class="card-wrapper">
+        <!-- Display a li with information about every post (if any)-->
+        {{#each stone}}
+        <li class="card">
+            <img src="{{image}}" />
+            <p>
+                <strong>Name: </strong><span class="name">{{name}}</span>
+            </p>
+            <p>
+                <strong>Category: </strong><span class="category">{{category}}</span>
+            </p>
+            <p><strong>Formula:</strong><span class="formula">{{formula}}</span></p>
+            <a class="details-btn" href="/stone/details/{{_id}}">Details</a>
+        </li>
+        {{else}}
+    </ul>
+    <!-- Display an h2 if there are no posts -->
+    <div id="no-post">
+        <h2>There are no gems and minerals! </h2>
+    </div>
+    {{/each}}
+</section> --}}
