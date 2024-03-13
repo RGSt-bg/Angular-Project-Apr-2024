@@ -384,6 +384,10 @@ ul#menu li a:hover {
   margin: 0 0 -9px 5px;
 }
 
+.searchTitle {
+  margin: 0;
+}
+
 .form_settings {
   margin: 15px 0 0 0;
 }
