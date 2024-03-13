@@ -15,7 +15,20 @@ router.get('/furnitures', async (req, res) => {
 
 router.get('/furnitureList', async (req, res) => {
     const furniture = await furnitureService.getAll().lean();
-    res.render('furniture/furnitureList', { furniture });
+    const calledFrom = req.query.calledFrom || '';
+
+    let isNewTitle = '';
+    let isNew = '';
+
+    if (calledFrom === 'newProducts') {
+        isNew = 'new';
+        isNewTitle = 'New';
+    }
+    else {
+        isNew = '';
+        isNewTitle = 'Our';
+    }
+        res.render('furniture/furnitureList', { furniture, isNewTitle, isNew });
 });
 
 router.get('/createCategory', async (req, res) => {
@@ -51,27 +64,48 @@ router.post('/create', isAuth, async (req, res) => {
         res.redirect('/furniture/furnitureList');
 
     } catch (err) {
-    console.log('This is the error');
         console.log(err.message);
         res.render('furniture/editCreate', { ...newFurniture, category, actionType: 'Create', error: getErrorMessage(err) });
     }
 });
 
-router.get('/edit/:furnitureId', isAuth, isProductOwner, async (req, res) => {
-
-    const furnitureId = req.params.stoneId;
-    let furniture;
+router.get('/details/:furnitureId', async (req, res) => {
+    const furnitureId = req.params.furnitureId;
+    // const isLiker = await isStoneLiker(req, res);
 
     let isLoggedIn = false;
     if (req.cookies['auth']) isLoggedIn = true;
 
     try {
-        furniture = await furnitureService.getOne(furnitureId).lean();
-        res.render('furniture/editCreate', { furniture, isLoggedIn });
+        const furniture = await furnitureService.getOneDetailed(furnitureId).lean();
+        const isOwner = furniture.owner?._id == req.user?._id;
+
+        res.render('furniture/details', { furniture, isOwner, isLoggedIn });
     }
     catch (err) {
         console.log(err.message);
-        res.render('/', { ...furniture, error: getErrorMessage(err) });
+        res.render('furniture/furnitureList', { error: getErrorMessage(err) });
+    }
+});
+
+router.get('/edit/:furnitureId', isAuth, isProductOwner, async (req, res) => {
+
+    let category = await furnitureService.getAllCategories().lean();
+    const furnitureId = req.params.furnitureId;
+    let furniture;
+    
+    let isLoggedIn = false;
+    if (req.cookies['auth']) isLoggedIn = true;
+    
+    try {
+        furniture = await furnitureService.getOne(furnitureId).lean();
+        category = await excludeCategory(furniture.category, category);
+
+        res.render('furniture/editCreate', { furniture, category, actionType: 'Edit' });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.render('furniture/editCreate', { ...furniture, category, actionType: 'Edit', error: getErrorMessage(err) });
     }
 });
 
@@ -83,30 +117,11 @@ router.post('/edit/:furnitureId', isAuth, async (req, res) => {
         res.redirect(`/furniture/details/${req.params.furnitureId}`);
     }
     catch (err) {
-        res.render(`/furniture/editCreate/${req.params.stoneId}`, { ...editedFurniture, error: getErrorMessage(err) });
+        res.render(`furniture/editCreate/${req.params.furnitureId}`, { ...editedFurniture, error: getErrorMessage(err) });
     }
 });
 
-router.get('/details/:stoneId', async (req, res) => {
-    const stoneId = req.params.stoneId;
-    const isLiker = await isStoneLiker(req, res);
-
-    let isLoggedIn = false;
-    if (req.cookies['auth']) isLoggedIn = true;
-
-    try {
-        const stone = await stoneService.getOneDetailed(stoneId).lean();
-        const isOwner = stone.owner?._id == req.user?._id;
-
-        res.render('furniture/details', { stone, isOwner, isLoggedIn, isLiker });
-    }
-    catch (err) {
-        console.log(err.message);
-        res.render('furniture/dashboard', { error: getErrorMessage(err) });
-    }
-});
-
-router.get('/like/:stoneId', async (req, res) => {
+router.get('/like/:furnitureId', async (req, res) => {
 
     const stoneId = req.params.stoneId;
     const isLiker = await isStoneLiker(req, res);
@@ -127,24 +142,24 @@ router.get('/like/:stoneId', async (req, res) => {
     }
 });
 
-router.get('/delete/:stoneId', isProductOwner, async (req, res) => {
-
-    await stoneService.delete(req.params.stoneId);
-
-    res.redirect('/furniture/dashboard');
+router.get('/delete/:furnitureId', isProductOwner, async (req, res) => {
+console.log('In delete route');
+    await furnitureService.delete(req.params.furnitureId);
+console.log('After delete action');
+    res.redirect('/furniture/furnitureList');
 });
 
-async function isStoneLiker(req, res) {
-    const userId = req.user?._id;
-    const stoneId = req.params.stoneId;
-    const isLiker = await Stone.findOne({ likedList: userId, _id: stoneId });
+// async function isStoneLiker(req, res) {
+//     const userId = req.user?._id;
+//     const stoneId = req.params.stoneId;
+//     const isLiker = await Stone.findOne({ likedList: userId, _id: stoneId });
 
-    if (!isLiker) {
-        return false;
-    };
+//     if (!isLiker) {
+//         return false;
+//     };
 
-    return true;
-};
+//     return true;
+// };
 
 router.get('/search', async (req, res) => {
 
@@ -161,5 +176,9 @@ router.get('/search', async (req, res) => {
 
     res.render('furniture/search', { stone, name, isLiker });
 });
+
+function excludeCategory(categoryName, category) {
+    return category.filter(furniture => furniture.category != categoryName);
+}
 
 module.exports = router;

@@ -4,9 +4,9 @@ const Furniture = require('../models/Furniture');
 
 exports.getAll = () => Furniture.find();
 
-exports.getOne = (stoneId) => Furniture.findById(stoneId);
+exports.getOne = (furnitureId) => Furniture.findById(furnitureId);
 
-// exports.getOneDetailed = (stoneId) => this.getOne(stoneId).populate('owner');
+exports.getOneDetailed = (furnitureId) => this.getOne(furnitureId).populate('owner');
 
 exports.createCategory = async (categoryData) => {
     const addedCategory = await Category.create(categoryData);
@@ -23,17 +23,17 @@ exports.create = async (userId, furnitureData) => {
     await User.findByIdAndUpdate(userId, { $push: { buyedList: addedFurniture._id } })
 };
 
-exports.like = async (userId, stoneId) => {
-    await Stone.findByIdAndUpdate(stoneId, { $push: { likedList: userId } })
+exports.like = async (userId, furnitureId) => {
+    await Furniture.findByIdAndUpdate(furnitureId, { $push: { likedList: userId } })
 };
 
-exports.edit = (stoneId, stoneData) => Stone.findByIdAndUpdate(stoneId, stoneData);
+exports.edit = (furnitureId, furnitureData) => Furniture.findByIdAndUpdate(furnitureId, furnitureData);
 
-exports.delete = (stoneId) => Stone.findByIdAndDelete(stoneId);
+exports.delete = (furnitureId) => Furniture.findByIdAndDelete(furnitureId);
 
 exports.search = async(name) => {
 
     const partialString = name;
 
-    return await Stone.find({ name: new RegExp(partialString, 'i') }).lean();
+    return await Furniture.find({ name: new RegExp(partialString, 'i') }).lean();
 };
