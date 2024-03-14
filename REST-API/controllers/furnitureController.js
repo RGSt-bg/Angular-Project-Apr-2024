@@ -16,23 +16,13 @@ router.get("/furnitures", async (req, res) => {
 router.get("/furnitureList", async (req, res) => {
   const furniture = await furnitureService.getAll().lean();
   const calledFrom = req.query.calledFrom || "";
-
   let isNewTitle = "";
   let isNew = "";
+  let noFurnitures = "";
 
-  if (calledFrom === "newProducts") {
-    isNew =
-      "Here you can find our NEW furnitures - elegant, comfortable, functional ...";
-    isNewTitle = "New";
-  } else if (calledFrom === "search") {
-    isNew = "The furniture that meets your criteria ...";
-    isNewTitle = "Found";
-  } else {
-    isNew =
-      "Here you can find our furnitures - elegant, comfortable, functional ...";
-    isNewTitle = "Our";
-  }
-  res.render("furniture/furnitureList", { furniture, isNewTitle, isNew });
+  [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom);
+
+  res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
 });
 
 router.get("/createCategory", async (req, res) => {
@@ -142,6 +132,55 @@ router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
   res.redirect("/furniture/furnitureList");
 });
 
+router.get("/search", async (req, res) => {
+
+    try {
+        let isNewTitle = "";
+        let isNew = "";
+        let noFurnitures = "";
+        const name = req.query.search;
+        const calledFrom = req.query.calledFrom;
+        const furniture = await furnitureService.search(name);
+  
+        [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom);
+  
+        res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
+    }
+
+    catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
+});
+
+function calledFromWhere(calledFrom) {
+  let isNewTitle = "";
+  let isNew = "";
+  let noFurnitures = "";
+
+  if (calledFrom === "newProducts") {
+    isNew = "Here you can find our NEW furnitures - elegant, comfortable, functional ...";
+    noFurnitures = "Sorry, there are no new furnitures!";
+    isNewTitle = "New";
+  } else if (calledFrom === "search") {
+    isNew = "The furniture that meets your criteria ...";
+    noFurnitures = "Sorry, there are no furnitures that meets your criteria!";
+    isNewTitle = "Found";
+  } else {
+    isNew = "Here you can find our furnitures - elegant, comfortable, functional ...";
+    noFurnitures = "Sorry, there are no furnitures!";
+    isNewTitle = "Our";
+  }
+
+  return [isNew, noFurnitures, isNewTitle];
+}
+
+function excludeCategory(categoryName, category) {
+  return category.filter((furniture) => furniture.category != categoryName);
+}
+
+module.exports = router;
+
 // router.get("/like/:furnitureId", async (req, res) => {
 //   const stoneId = req.params.stoneId;
 //   const isLiker = await isStoneLiker(req, res);
@@ -172,23 +211,3 @@ router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
 
 //     return true;
 // };
-
-router.get("/search", async (req, res) => {
-
-  try {
-    const name = req.query.search;
-    const furniture = await furnitureService.search(name);
-    res.render("furniture/furnitureList", { furniture });
-  }
-  
-  catch (err) {
-    console.error(err);
-    res.status(500).send('Server Error');
-  }
-});
-
-function excludeCategory(categoryName, category) {
-  return category.filter((furniture) => furniture.category != categoryName);
-}
-
-module.exports = router;

@@ -9,10 +9,9 @@
             {{!-- Here you can find our {{isNew}} products - elegant, comfortable,
             functional ... --}}
         </p>
-
         <section id="newProducts">
             <ul class="card-wrapper">
-            {{#each furniture}}
+                {{#each furniture}}
                 <li class="card">
                     <img src="{{image}}" />
                     <p><strong>Name: </strong><span class="name">{{name}}</span></p>
@@ -24,16 +23,16 @@
                     </p>
                     <a class="details-btn" href="/furniture/details/{{_id}}">Details</a>
                 </li>
-            {{/each}}
+                {{/each}}
             </ul>
-            {{/if}}
-            <!-- Display an h2 if there are no furnitures -->
-            {{#unless furniture}}
-            <div id="no-furnitures">
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                <h2>Sorry, there are no {{isNew}} furnitures!</h2>
-            </div>
-            {{/unless}}
         </section>
+        {{/if}}
+        <!-- Display an h2 if there are no furnitures -->
+        {{#unless furniture}}
+        <div id="no-furnitures">
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <h2>{{noFurnitures}}</h2>
+        </div>
+        {{/unless}}
     </div>
 </main>
