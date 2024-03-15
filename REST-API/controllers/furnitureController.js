@@ -19,13 +19,26 @@ router.get("/furnitures", async (req, res) => {
 });
 
 router.get("/furnitureList", async (req, res) => {
-  const furniture = await furnitureService.getAll().lean();
   const calledFrom = req.query.calledFrom || "";
+  const category = req.query.category || "";
+  let furniture;
   let isNewTitle = "";
   let isNew = "";
   let noFurnitures = "";
 
-  [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom);
+  if (calledFrom === "category") {
+    furniture = await furnitureService.getAllByCategory(category);
+    furniture = furniture.map(doc => doc.toObject());
+  }
+  else if (calledFrom === "newProducts") {
+    furniture = await furnitureService.getLatestFurnitures();
+    furniture = furniture.map(doc => doc.toObject());
+  }
+  else {
+    furniture = await furnitureService.getAll().lean();
+  }
+
+  [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom, category);
 
   res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
 });
@@ -178,7 +191,7 @@ module.exports = router;
 //     res.render("/furniture/dashboard", { error: getErrorMessage(err) });
 //   }
 // });
-
+// =============================================================================
 // async function isStoneLiker(req, res) {
 //     const userId = req.user?._id;
 //     const stoneId = req.params.stoneId;

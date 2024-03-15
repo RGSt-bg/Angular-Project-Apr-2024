@@ -8,8 +8,10 @@
         <p>{{categories.category}}</p>
         <p>{{categories.imageCategory}}</p>
         <div class="{{location}}">
-            <a class="category" href="/furniture/furnitureList?calledFrom=category"><img src="{{imageCategory}}" alt="{{category}}" /></a>
-            <a class="category" href="/furniture/furnitureList?calledFrom=category"><h2>{{category}}</h2></a>
+            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category}}">
+                <img src="{{imageCategory}}" alt="{{category}}" /></a>
+            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category}}">
+                <h2>{{category}}</h2></a>
         </div>
         {{/each}}
     </div>
