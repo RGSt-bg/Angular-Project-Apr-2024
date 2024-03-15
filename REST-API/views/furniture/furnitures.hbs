@@ -3,57 +3,14 @@
         <h1>
             <b><i>Trending Categories</i></b>
         </h1>
-
-        <div class="left">
-            <a class="category" href="/furniture/furnitureList?calledFrom=category"><img src="{{image}}" alt="{{name}}" /></a>
-            <a class="category" href="/furniture/furnitureList?calledFrom=category"><h2>{{name}}</h2></a>
+        {{#each categories}}
+        <p>{{categories.location}}</p>
+        <p>{{categories.category}}</p>
+        <p>{{categories.imageCategory}}</p>
+        <div class="{{location}}">
+            <a class="category" href="/furniture/furnitureList?calledFrom=category"><img src="{{imageCategory}}" alt="{{category}}" /></a>
+            <a class="category" href="/furniture/furnitureList?calledFrom=category"><h2>{{category}}</h2></a>
         </div>
-
-        <div class="center">
-            <a class="category" href="furnitureList.html"><img src="/images/Table-Atika.jpg" alt="Table" /></a>
-            <a class="category" href="furnitureList.html"><h2>Tables</h2></a>
-        </div>
-
-        <div class="right">
-            <a class="category" href="furnitureList.html"><img src="/images/Sofa-Antony.jpg" alt="Sofa" /></a>
-            <a class="category" href="furnitureList.html"><h2>Sofas</h2></a>
-        </div>
-
-        <div class="center">
-            <a class="category" href="furnitureList.html"><img src="/images/Bed-Memphis.jpg" alt="Bed" /></a>
-            <a class="category" href="furnitureList.html"><h2>Beds</h2></a>
-        </div>
-
-        <div class="left">
-            <a class="category" href="furnitureList.html"><img src="/images/Wardrobe-Alexa.jpg" alt="Wardrobe" /></a>
-            <a class="category" href="furnitureList.html"><h2>Wardrobes</h2></a>
-        </div>
-
+        {{/each}}
     </div>
 </main>
-
-
-{{!-- <section id="dashboard">
-    <h2>Minerals and Gems</h2>
-    <ul class="card-wrapper">
-        <!-- Display a li with information about every post (if any)-->
-        {{#each stone}}
-        <li class="card">
-            <img src="{{image}}" />
-            <p>
-                <strong>Name: </strong><span class="name">{{name}}</span>
-            </p>
-            <p>
-                <strong>Category: </strong><span class="category">{{category}}</span>
-            </p>
-            <p><strong>Formula:</strong><span class="formula">{{formula}}</span></p>
-            <a class="details-btn" href="/stone/details/{{_id}}">Details</a>
-        </li>
-        {{else}}
-    </ul>
-    <!-- Display an h2 if there are no posts -->
-    <div id="no-post">
-        <h2>There are no gems and minerals! </h2>
-    </div>
-    {{/each}}
-</section> --}}

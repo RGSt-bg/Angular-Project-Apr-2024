@@ -4,13 +4,18 @@ const furnitureService = require("../services/furnitureService");
 const { isAuth } = require("../middlewares/authMiddleware");
 const { isProductOwner } = require("../middlewares/userMiddleware");
 const { getErrorMessage } = require("../utils/errorUtil");
+const { calledFromWhere, excludeCategory, addLocations } = require("../utils/furnitureUtils");
 const Category = require("../models/Category");
 const Furniture = require("../models/Furniture");
 const { query } = require("express");
 
+const mongoose = require("mongoose");
+
 router.get("/furnitures", async (req, res) => {
-  const furniture = await furnitureService.getAll().lean();
-  res.render("furniture/furnitures", { furniture });
+  let categories = await furnitureService.getAllCategories().lean();
+
+  categories = addLocations(categories);
+  res.render("furniture/furnitures", { categories });
 });
 
 router.get("/furnitureList", async (req, res) => {
@@ -152,32 +157,6 @@ router.get("/search", async (req, res) => {
         res.status(500).send("Server Error");
     }
 });
-
-function calledFromWhere(calledFrom) {
-  let isNewTitle = "";
-  let isNew = "";
-  let noFurnitures = "";
-
-  if (calledFrom === "newProducts") {
-    isNew = "Here you can find our NEW furnitures - elegant, comfortable, functional ...";
-    noFurnitures = "Sorry, there are no new furnitures!";
-    isNewTitle = "New";
-  } else if (calledFrom === "search") {
-    isNew = "The furniture that meets your criteria ...";
-    noFurnitures = "Sorry, there are no furnitures that meets your criteria!";
-    isNewTitle = "Found";
-  } else {
-    isNew = "Here you can find our furnitures - elegant, comfortable, functional ...";
-    noFurnitures = "Sorry, there are no furnitures!";
-    isNewTitle = "Our";
-  }
-
-  return [isNew, noFurnitures, isNewTitle];
-}
-
-function excludeCategory(categoryName, category) {
-  return category.filter((furniture) => furniture.category != categoryName);
-}
 
 module.exports = router;
 

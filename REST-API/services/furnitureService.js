@@ -15,6 +15,21 @@ exports.createCategory = async (categoryData) => {
 
 exports.getAllCategories = () => Category.find();
 
+// exports.getAllCategories = async (name) => {
+//     const string = name;
+//     const categoryRegex = new RegExp(string, "i");
+  
+//     try {
+//       const furniture = await Furniture.find({ category: { $regex: categoryRegex } });
+//       return furniture;
+//     }
+    
+//     catch (err) {
+//       console.error(err);
+//       throw err;
+//     }
+//   };
+  
 exports.create = async (userId, furnitureData) => {
   const addedFurniture = await Furniture.create({
     owner: userId,
@@ -35,25 +50,6 @@ exports.edit = (furnitureId, furnitureData) =>
 
 exports.delete = (furnitureId) => Furniture.findByIdAndDelete(furnitureId);
 
-// exports.search = async (name) => {
-
-//     const partialString = name;
-// console.log(partialString);
-//     const nameRegex = new RegExp(partialString, 'i');
-//     const categoryRegex = new RegExp(partialString, 'i');
-
-//     Furniture.find({ name: { $regex: nameRegex }, category: { $regex: categoryRegex } }, (err, furniture) => {
-//         if (err) {
-//             console.error(err);
-//         } else {
-// console.log(furniture);
-//             return furniture;
-//         }
-//     });
-
-//     // return await Furniture.find({ name: new RegExp(partialString, 'i') }).lean();
-// };
-
 exports.search = async (name) => {
   const partialString = name;
   const nameRegex = new RegExp(partialString, "i");
@@ -68,9 +64,7 @@ exports.search = async (name) => {
     }).lean();
 
     return furniture;
-  }
-  
-  catch (err) {
+  } catch (err) {
     console.error(err);
     throw err;
   }
