@@ -1,0 +1,36 @@
+<header>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1>
+            <a href="/">Furniture <span class="logo_colour">Shop</span></a>
+          </h1>
+          <h2>Simple. Comfortable. At affordable prices.</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the "li" tag for the selected page - to highlight which page you're on -->
+          <li><a href="/">Home</a></li>
+          <li><a href="/furniture/furnitures">Categories</a></li>
+          <li><a href="/furniture/furnitureList?calledFrom=newProducts">New Furnitures</a>
+          </li>
+          <!-- {{#if isAuthenticated}} -->
+          <li><a href="/furniture/create">Create Furniture</a></li>
+          <li><a href="/furniture/createCategory">Create Category</a></li>
+          <!-- {{/if}} -->
+          <li><a href="/contact">Contacts</a></li>
+          <li><a href="/about">About</a></li>
+          <!-- {{#unless isAuthenticated}} -->
+          <li><a href="/auth/register">Register</a></li>
+          <li><a href="/auth/login">Login</a></li>
+          <!-- {{/unless}}
+                    {{#if isAuthenticated}} -->
+          <li><a href="/auth/logout">Logout</a></li>
+          <!-- {{/if}} -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
