@@ -49,10 +49,12 @@ router.get("/createCategory", async (req, res) => {
 
 router.post("/createCategory", async (req, res) => {
   const newCategory = req.body;
+
   try {
     await furnitureService.createCategory(newCategory);
     res.render("furniture/createCategory");
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err.message);
     res.render("furniture/createCategory", { error: getErrorMessage(err) });
   }

@@ -1,13 +1,19 @@
 <main>
     <div id="content">
-        <h1><b><i>Create Category</i></b></h1>
+        <div class="notice-container">
+            <h1><b><i>Create Category</i></b></h1>
+            <div class="notice error">
+                <p>{{error}}</p>
+            </div>
+        </div>
         <form method="post" action="">
             <div class="form_settings">
                 <p>
                     <span>Category*</span><input class="contact" type="text" name="category" value="{{category}}" />
                 </p>
                 <p>
-                    <span>Image*</span><input class="contact" type="text" name="imageCategory" value="{{imageCategory}}" />
+                    <span>Image*</span><input class="contact" type="text" name="imageCategory"
+                        value="{{imageCategory}}" />
                 </p>
                 <p style="padding-top: 15px">
                     <span>&nbsp;</span><input class="submit" type="submit" name="createCategory" value="Create" />
@@ -16,4 +22,21 @@
             </div>
         </form>
     </div>
+    <script>
+console.log({{ errorMessage }});
+        const errorElement = document.querySelector('.notice.error');
+console.log(errorElement);
+        function showNotice() {
+            errorElement.classList.remove('hidden');}
+
+        function hideNotice() {
+            errorElement.classList.add('hidden');}
+
+        hideNotice();
+
+        if ({{ error }}) {
+            showNotice();
+            setTimeout(hideNotice, 5000);
+        }
+    </script>
 </main>

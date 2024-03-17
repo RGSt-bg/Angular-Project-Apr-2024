@@ -52,6 +52,21 @@
                 <div class="sidebar">
                     <div class="sidebar_top"></div>
                     <div class="sidebar_item">
+                        <h3 class="searchTitle">Search Furniture</h3>
+                        <p style="font-size: 15px"><i>(by name and category)</i></p>
+                        <form method="get" action="/furniture/search?calledFrom=search" id="search_form">
+                            <input type="hidden" name="calledFrom" value="search"> {{!-- Only to send value of calledFrom!!! --}}
+                            <p>
+                                <input class="search" type="text" name="search" placeholder="Enter keyword....." />
+                                <input class="searchImg" type="image" name="search" src="/images/search.png" alt="Search" title="Search" />
+                            </p>
+                        </form>
+                    </div>
+                    <div class="sidebar_base"></div>
+                </div>
+                <div class="sidebar">
+                    <div class="sidebar_top"></div>
+                    <div class="sidebar_item">
                         <h3>Latest News from Furniture's World</h3>
                         <h4>Home Furniture Design Trends</h4>
                         <h5>April 2024</h5>
@@ -59,8 +74,8 @@
                             2024 is all about furniture that doesn't just look good......
                             <br>
                             <a target="_blank"
-                                href="https://www.modernfurnishings.com/blogs/news/2024-home-furniture-design-trends-elevate-your-space-with-modern-furnishings">read
-                                more</a>
+                            href="https://www.modernfurnishings.com/blogs/news/2024-home-furniture-design-trends-elevate-your-space-with-modern-furnishings">
+                            read more</a>
                         </p>
                     </div>
                     <div class="sidebar_base"></div>
@@ -78,21 +93,6 @@
                             <li><a target="_blank" href="https://www.kartell.com/">Kartell</a></li>
                             <li><a target="_blank" href="https://www.roche-bobois.com/">Roche Bobois</a></li>
                         </ul>
-                    </div>
-                    <div class="sidebar_base"></div>
-                </div>
-                <div class="sidebar">
-                    <div class="sidebar_top"></div>
-                    <div class="sidebar_item">
-                        <h3 class="searchTitle">Search Furniture</h3>
-                        <p style="font-size: 15px"><i>(by name and category)</i></p>
-                        <form method="get" action="/furniture/search?calledFrom=search" id="search_form">
-                            <input type="hidden" name="calledFrom" value="search"> {{!-- Only to send value of calledFrom!!! --}}
-                            <p>
-                                <input class="search" type="text" name="search" placeholder="Enter keywords....." />
-                                <input class="searchImg" type="image" name="search" src="/images/search.png" alt="Search" title="Search" />
-                            </p>
-                        </form>
                     </div>
                     <div class="sidebar_base"></div>
                 </div>

@@ -109,7 +109,7 @@ ol li {
 }
 
 .left h2 {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 .center {
@@ -124,8 +124,8 @@ ol li {
 }
 
 .center h2 {
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .right {
@@ -140,7 +140,7 @@ ol li {
 }
 
 .right h2 {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 #content .left img {
@@ -324,10 +324,14 @@ ul#menu li a:hover {
 
 #content {
   text-align: left;
-  width: 655px;
+  width: 700px;
   max-width: 72%;
   padding: 15px 0 20px 0;
   margin: 0;
+}
+
+#content h1 {
+  width: 40%;
 }
 
 #content ul {
@@ -335,7 +339,6 @@ ul#menu li a:hover {
 }
 
 #content ul li {
-  /* list-style-type: none; */
   margin: 0 0 15px 0;
   padding: 0 0 4px 0;
   line-height: 1.5em;
@@ -632,4 +635,88 @@ ul#menu li a:hover {
 
 #errorPage img {
   width: 200px;
+}
+
+/* Error Notices */
+
+.notice p {
+  margin: 0;
+}
+
+.notice-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.notice-container h1 {
+  margin: 0;
+  flex: 1;
+}
+
+.notice {
+  position: relative;
+  margin: 1em;
+  background: #F9F9F9;
+  padding: 1em 1em 1em 2em;
+  border-left: 4px solid #DDD;
+  border-radius: 8px;
+  /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125); */
+  /* font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif; */
+  color: #34495e;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6em;
+  max-width: 55%;
+}
+
+.notice::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: -17px;
+  background-color: #DDD;
+  color: #FFF;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  font-family: Georgia;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+ 
+/*.info {
+  border-color: #0074D9;
+}
+
+.info::before {
+  content: "i";
+  background-color: #0074D9;
+}
+
+.success {
+  border-color: #2ECC40;
+}
+
+.success::before {
+  content: "√";
+  background-color: #2ECC40;
+}
+
+.warning {
+  border-color: #FFDC00;
+}
+
+.warning::before {
+  content: "!";
+  background-color: #FFDC00;
+} */
+
+.error {
+  border-color: #FF4136;
+}
+
+.error::before {
+  content: "X";
+  background-color: #FF4136;
 }
