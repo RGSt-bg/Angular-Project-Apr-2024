@@ -210,7 +210,8 @@ html {
   
   #menubar {
     height: 46px;
-    width: 975px;
+    width: 955px;
+    /* width: 975px; */
     margin: 1px auto 0 auto;
     background: rgb(70, 70, 70);
   }
@@ -255,14 +256,25 @@ html {
   }
   
   #site_content {
+    display: flex;
     width: 950px;
     overflow: hidden;
-    margin: 44px auto 0 auto;
-    padding: 10px 0 0 25px;
+    /* margin: 44px auto 0 auto; */
+    margin: 0 auto 0 auto;
+    padding: 10px 0 0 15px;
+    /* padding: 10px 0 0 10px; */
     background: #EEE;
     border-top: 0;
     border-bottom: 0;
     color: #5D5D5D;
+  }
+
+  app-main {
+    flex: 1 0 auto;
+  }
+
+  app-sidebar {
+    flex: 1 0 auto;
   }
   
   #sidebar_container {
@@ -320,13 +332,13 @@ html {
   #content {
     text-align: left;
     width: 700px;
-    max-width: 72%;
+    max-width: 97%;
     padding: 15px 0 20px 0;
     margin: 0;
   }
   
   #content h1 {
-    width: 40%;
+    width: 50%;
   }
   
   #content ul {
@@ -615,23 +627,7 @@ html {
   #info-wrapper tbody tr td {
     background-color: rgba(255, 255, 255, 0.699);
   }
-  
-  /* Error Page */
-  
-  #errorPage {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 20%;
-    padding: 10px;
-  }
-  
-  #errorPage img {
-    width: 200px;
-  }
-  
+
   /* Error Notices */
   
   .notice p {
