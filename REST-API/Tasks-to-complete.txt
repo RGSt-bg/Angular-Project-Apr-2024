@@ -1,2 +1,3 @@
-- Validation of fields
-- Error messages
+- Input Data Validation
+- Error Handling:
+    - Notice container in: Login, Register, Create Category, Create Furniture & Contact Us
