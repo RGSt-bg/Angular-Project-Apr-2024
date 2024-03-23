@@ -3,16 +3,11 @@
         <h1>
             <b><i>Trending Categories</i></b>
         </h1>
-        <!-- {{#each categories}}
-        <p>{{location}}</p>
-        <p>{{category}}</p>
-        <p>{{imageCategory}}</p>
-        <div class="{{location}}">
-            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category}}">
-                <img src="{{imageCategory}}" alt="{{category}}" /></a>
-            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category}}">
-                <h2 style="font-size: 18px;"><i>{{category}}</i></h2></a>
+        <div *ngFor="let category of categories" class="{{category.location}}">
+            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category.category}}">
+                <img src="{{category.imageCategory}}" alt="{{category.category}}" /></a>
+            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category.category}}">
+                <h2 style="font-size: 18px;"><i>{{category.category}}</i></h2></a>
         </div>
-        {{/each}} -->
     </div>
 </main>

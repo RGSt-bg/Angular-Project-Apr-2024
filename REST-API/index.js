@@ -2,6 +2,7 @@ const express = require('express');
 const handlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const routes = require('./routes');
 const { authMiddleware } = require('./middlewares/authMiddleware');
@@ -12,6 +13,7 @@ const port = 3000;
 app.use(express.static('static'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 app.use(authMiddleware);
 
 app.engine('hbs', handlebars.engine({

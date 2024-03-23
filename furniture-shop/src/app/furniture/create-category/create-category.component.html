@@ -1,1 +1,46 @@
-<p>create-category works!</p>
+<main>
+  <div id="content">
+    <div class="notice-container">
+      <h1>
+        <b><i>Create Category</i></b>
+      </h1>
+      <!-- <div class="notice error">
+                <p>{{error}}</p>
+            </div> -->
+    </div>
+    <form #form="ngForm" (ngSubmit)="addCategory(form)">
+      <div class="form_settings">
+        <p>
+          <span>Category*</span>
+          <input
+            class="contact"
+            type="text"
+            name="category"
+            #inputCategory="ngModel"
+            ngModel
+            required
+            minlength="3"
+          />
+        </p>
+        <p>
+          <span>Image*</span
+          ><input
+            class="contact"
+            type="text"
+            name="imageCategory"
+            #inputImageCategory="ngModel"
+            ngModel
+            required
+            minlength="3"
+          />
+        </p>
+        <p style="padding-top: 15px">
+          <span>&nbsp;</span>
+          <button class="submit">Create</button>
+          <!-- <button class="submit" (click)="addCategory(form)">Create</button> -->
+        </p>
+        <p>* - required field</p>
+      </div>
+    </form>
+  </div>
+</main>

@@ -13,18 +13,18 @@
         <ul id="menu">
           <!-- put class="selected" in the "li" tag for the selected page - to highlight which page you're on -->
           <li><a routerLink="/home">Home</a></li>
-          <li><a routerLink="/categories">Categories</a></li>
-          <li><a routerLink="/furnitures/furnitureList?calledFrom=newProducts">New Furnitures</a>
+          <li><a routerLink="/furniture/categories">Categories</a></li>
+          <li><a routerLink="/furniture/furnitureList?calledFrom=newProducts">New Furnitures</a>
           </li>
           <!-- {{#if isAuthenticated}} -->
-          <li><a routerLink="/create-furniture">Create Furniture</a></li>
-          <li><a routerLink="/create-category">Create Category</a></li>
+          <li><a routerLink="/furniture/createFurniture">Create Furniture</a></li>
+          <li><a routerLink="/furniture/createCategory">Create Category</a></li>
           <!-- {{/if}} -->
           <li><a routerLink="/contacts">Contacts</a></li>
           <li><a routerLink="/about">About</a></li>
           <!-- {{#unless isAuthenticated}} -->
-          <li><a routerLink="/register">Register</a></li>
-          <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/auth/register">Register</a></li>
+          <li><a routerLink="/auth//login">Login</a></li>
           <!-- {{/unless}}
                     {{#if isAuthenticated}} -->
           <!-- <li (click)="logout()"><a>Logout</a></li> -->

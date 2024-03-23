@@ -187,20 +187,21 @@ html {
   #logo_text h1 a,
   #logo_text h1 a:hover {
     padding: 0px 0 0 0;
-    color: #c9cb45;
+    color: #f6fa14;
     font-size: 150%;
     letter-spacing: 0.1em;
     text-decoration: none;
   }
   
   #logo_text h1 a .logo_colour {
-    color: #FFF;
+    /* color: #FFF; */
+    color: #bcbaba;
   }
   
   #logo_text h2 {
     font-size: 150%;
     padding: 4px 0 0 0;
-    color: #c9cb45;
+    color: #f6fa14;
   }
   
   #logo_text h1 a {

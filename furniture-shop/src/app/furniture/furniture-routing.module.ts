@@ -6,10 +6,10 @@ import { CreateFurnitureComponent } from './create-furniture/create-furniture.co
 import { FurnituresComponent } from './furnitures/furnitures.component';
 
 const routes: Routes = [
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'create-category', component: CreateCategoryComponent },
-  { path: 'create-furniture', component: CreateFurnitureComponent },
-  { path: 'furniture', component: FurnituresComponent },
+  { path: 'furniture/categories', component: CategoriesComponent },
+  { path: 'furniture/createCategory', component: CreateCategoryComponent },
+  { path: 'furniture/createFurniture', component: CreateFurnitureComponent },
+  { path: 'furniture/furnitureList', component: FurnituresComponent },
 ];
 
 @NgModule({
