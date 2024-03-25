@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+// import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Category } from './types/category';
+import { Furniture } from './types/furniture';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,26 @@ export class ApiService {
     return this.http.get<any>(`${apiUrl}/furniture/categories`);
   }
 
+  getFurnitureByCategory(category: string) {
+console.log(category);
+    const { apiUrl } = environment;
+console.log(`${apiUrl}/furniture/furnitureList?calledFrom=${category}`);
+    return this.http.get<Furniture[]>(`${apiUrl}/furniture/furnitureList?calledFrom=${category}`);
+  }
+
   createCategory(category: string, imageCategory: string) {
     const { apiUrl } = environment;
     const payload = { category, imageCategory };
-console.log('payload: ', payload);
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<Category>(`${apiUrl}/furniture/createCategory`, payload, { headers });
-    // return this.http.post<Category>(`${apiUrl}/furniture/createCategory`, payload);
+    return this.http.post<Category>(`${apiUrl}/furniture/createCategory`, payload);
+  }
+
+  createFurniture(name: string, category: string, imageFurniture: string, color: string, material: string, price: number, description: string) {
+    const { apiUrl } = environment;
+
+    // if (!name || !category || !imageFurniture || !color || !material || !price || !description) {
+    //   return;
+    // }
+    const payload = { name, category, imageFurniture, color, material, price, description };
+    return this.http.post<Furniture>(`${apiUrl}/furniture/createFurniture`, payload);
   }
 }

@@ -1,1 +1,89 @@
-<p>create-furniture works!</p>
+<main>
+  <div id="content">
+    <h1>
+      <b><i>Create Furniture</i></b>
+    </h1>
+    <form #form="ngForm" (ngSubmit)="addFurniture(form)">
+      <div class="form_settings">
+        <p>
+          <span>Name*</span
+          ><input
+            class="contact"
+            type="text"
+            name="name"
+            #inputName="ngModel"
+            ngModel
+            required
+            minlength="4"
+          />
+        </p>
+        <p>
+          <span>Category*</span>
+          <select class="contact" name="category" [(ngModel)]="selectedCategory">
+            <option *ngFor="let category of categories" [value]="category.category">{{ category.category }}</option>
+          </select>
+        </p>
+        <p>
+          <span>Image*</span
+          ><input
+            class="contact"
+            type="text"
+            name="imageFurniture"
+            #inputImageFurniture="ngModel"
+            ngModel
+            required
+          />
+        </p>
+        <p>
+          <span>Color</span
+          ><input
+            class="contact"
+            type="text"
+            name="color"
+            #inputColor="ngModel"
+            ngModel
+          />
+        </p>
+        <p>
+          <span>Material</span
+          ><input
+            class="contact"
+            type="text"
+            name="material"
+            #inputMaterial="ngModel"
+            ngModel
+          />
+        </p>
+        <p>
+          <span>Price* (positive number)</span
+          ><input
+            class="contact"
+            type="number"
+            name="price"
+            #inputPrice="ngModel"
+            ngModel
+            required
+          />
+        </p>
+        <p>
+          <span>Description* (minimum 20 characters)</span>
+          <textarea
+            class="description textarea"
+            rows="8"
+            cols="50"
+            name="description"
+            #textareaDescription="ngModel"
+            ngModel
+            required
+            minlength="20">
+            </textarea>
+        </p>
+        <p style="padding-top: 15px">
+          <span>&nbsp;</span>
+          <button class="submit">Create</button>
+        </p>
+        <p>* - required field</p>
+      </div>
+    </form>
+  </div>
+</main>

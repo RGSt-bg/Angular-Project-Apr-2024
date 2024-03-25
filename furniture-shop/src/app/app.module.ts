@@ -10,11 +10,12 @@ import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { StaticModule } from './static/static.module';
 import { MainComponent } from './main/main.component';
+import { appInterceptorProvider } from './app.interceptor';
 
 @NgModule({
   declarations: [AppComponent, MainComponent],
   imports: [BrowserModule, UserModule, CoreModule, SharedModule, FurnitureModule, StaticModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

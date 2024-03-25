@@ -4,9 +4,9 @@
             <b><i>Trending Categories</i></b>
         </h1>
         <div *ngFor="let category of categories" class="{{category.location}}">
-            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category.category}}">
+            <a class="category" routerLink="/furniture/furnitureList?calledFrom=category&category={{category.category}}">
                 <img src="{{category.imageCategory}}" alt="{{category.category}}" /></a>
-            <a class="category" href="/furniture/furnitureList?calledFrom=category&category={{category.category}}">
+            <a class="category" routerLink="/furniture/furnitureList?calledFrom=category&category={{category.category}}">
                 <h2 style="font-size: 18px;"><i>{{category.category}}</i></h2></a>
         </div>
     </div>
