@@ -13,13 +13,13 @@ const mongoose = require("mongoose");
 
 router.get("/categories", async (req, res) => {    // Ready!
   let categories = await furnitureService.getAllCategories().lean();
-
   categories = addLocations(categories);
-  // res.render("furniture/categories", { categories });
+// res.render("furniture/categories", { categories });
   res.send(categories);
 });
 
 router.get("/furnitureList", async (req, res) => {
+console.log(req.query);
   const calledFrom = req.query.calledFrom || "";
   const category = req.query.category || "";
   let furniture;
@@ -41,7 +41,8 @@ router.get("/furnitureList", async (req, res) => {
 
   [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom, category);
 
-  res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
+  // res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
+  res.send(furniture);
 });
 
 router.get("/createCategory", async (req, res) => {
@@ -49,14 +50,13 @@ router.get("/createCategory", async (req, res) => {
 });
 
 router.post("/createCategory", async (req, res) => {
-console.log('req.body: ', req.body);
   const newCategory = req.body;
 
   try {
     await furnitureService.createCategory(newCategory);
     // res.render("furniture/createCategory");
     // res.send(newCategory);
-    res.send('The category was created successfully!');
+    res.send({"message": "The category was created successfully!"});
   }
   catch (err) {
     console.log(err.message);
@@ -66,19 +66,23 @@ console.log('req.body: ', req.body);
 
 router.get("/createFurniture", async (req, res) => {
   const category = await furnitureService.getAllCategories().lean();
-  res.render("furniture/editCreate", { category, actionType: "Create" });
+  // res.render("furniture/editCreate", { category, actionType: "Create" });
+  res.send({ category, actionType: "Create" });
 });
 
 router.post("/createFurniture", isAuth, async (req, res) => {
   const newFurniture = req.body;
+console.log(newFurniture);
   const category = await furnitureService.getAllCategories().lean();
   const actionType = "Create";
 
   try {
     await furnitureService.create(req.user._id, newFurniture, { actionType });
+    // res.redirect("/furniture/furnitureList");
+    res.send({"message": "The furniture was created successfully!"});
+  }
 
-    res.redirect("/furniture/furnitureList");
-  } catch (err) {
+  catch (err) {
     console.log(err.message);
     res.render("furniture/editCreate", {
       ...newFurniture,
