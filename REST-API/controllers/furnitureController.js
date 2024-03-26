@@ -41,7 +41,6 @@ router.get("/furnitureList", async (req, res) => {
   [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom, category);
 
   // res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
-console.log(furniture);
   res.send(furniture);
 });
 
@@ -104,8 +103,11 @@ router.get("/details/:furnitureId", async (req, res) => {
     const furniture = await furnitureService.getOneDetailed(furnitureId).lean();
     const isOwner = furniture.owner?._id == req.user?._id;
 
-    res.render("furniture/details", { furniture, isOwner, isLoggedIn });
-  } catch (err) {
+    // res.render("furniture/details", { furniture, isOwner, isLoggedIn });
+    res.send(furniture);
+  }
+  
+  catch (err) {
     console.log(err.message);
     res.render("furniture/furnitureList", { error: getErrorMessage(err) });
   }
