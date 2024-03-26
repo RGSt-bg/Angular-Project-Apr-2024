@@ -37,4 +37,10 @@ export class ApiService {
     const payload = { name, category, imageFurniture, color, material, price, description };
     return this.http.post<Furniture>(`${apiUrl}/furniture/createFurniture`, payload);
   }
+
+  getFurnitureDetails(furnitureId: string) {
+    const { apiUrl } = environment;
+    
+    return this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
+  }
 }

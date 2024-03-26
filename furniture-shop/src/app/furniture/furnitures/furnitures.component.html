@@ -1,31 +1,37 @@
 <main>
-    <div id="content">
-        <!-- <div *ngIf="furniture" id="content"> -->
-        <h1>
-            <!-- <b><i>{{isNewTitle}}</i></b> -->
-        </h1>
-        <p>
-            <!-- {{isNew}} -->
-        </p>
-        <section id="newProducts">
-            <ul class="card-wrapper">
-                <li *ngFor="let singleFurniture of furniture"  class="card">
-                    <img src="{{singleFurniture.imageFurniture}}" />
-                    <p><strong>Name: </strong><span class="name">{{singleFurniture.name}}</span></p>
-                    <p>
-                        <strong>Category: </strong><span class="category">{{singleFurniture.category}}</span>
-                    </p>
-                    <p>
-                        <strong>Price: $</strong><span class="formula">{{singleFurniture.price}}</span>
-                    </p>
-                    <a class="details-btn" routerLink="/furniture/details/{{singleFurniture._id}}">Details</a>
-                </li>
-            </ul>
-        </section>
-        <!-- Display an h2 if there are no furnitures -->
-        <div *ngIf="!furniture"  id="no-furnitures">
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <!-- <h2>{{noFurnitures}}</h2> -->
-        </div>
+  <div id="content">
+    <div *ngIf="furniture && furniture.length > 0" id="content">
+      <h1>
+        <b><i>{{ isNewTitle }}</i></b>
+      </h1>
+      <p>
+        {{ isNew }}
+      </p>
+      <section id="newProducts">
+        <ul class="card-wrapper">
+          <li *ngFor="let singleFurniture of furniture" class="card">
+            <img src="{{ singleFurniture.imageFurniture }}" />
+            <p>
+              <strong>Name: </strong
+              ><span class="name">{{ singleFurniture.name }}</span>
+            </p>
+            <p>
+              <strong>Category: </strong
+              ><span class="category">{{ singleFurniture.category }}</span>
+            </p>
+            <p>
+              <strong>Price: $</strong
+              ><span class="formula">{{ singleFurniture.price }}</span>
+            </p>
+            <a class="details-btn" 
+            routerLink="/furniture/details/{{ singleFurniture._id }}">Details</a>
+          </li>
+        </ul>
+      </section>
+      <!-- Display an h2 if there are no furnitures -->
     </div>
+    <div *ngIf="furniture.length === 0" id="no-furnitures">
+      <h2>{{ noFurnitures }}</h2>
+    </div>
+  </div>
 </main>

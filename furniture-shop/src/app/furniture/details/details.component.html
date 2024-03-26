@@ -1,0 +1,83 @@
+<main>
+  <div id="content">
+    <section id="details">
+      <div id="details-wrapper">
+        <p id="details-title">Name: {{ furniture[0].name }}</p>
+        <div id="img-wrapper">
+          <img src="{{ furniture[0].imageFurniture }}" />
+        </div>
+        <div id="info-wrapper">
+          <table>
+            <tr>
+              <td>
+                <p>
+                  Category:
+                  <span id="details-category">{{ furniture[0].category }}</span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Color: <span id="details-color">{{ furniture[0].color }}</span>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>
+                  Material:
+                  <span id="details-dimensions">{{ furniture[0].material }}</span>
+                </p>
+              </td>
+              <td>
+                <p>
+                  Price: $<span id="details-price">{{ furniture[0].price }}</span>
+                </p>
+              </td>
+            </tr>
+          </table>
+          <p>
+            Description:
+            <span id="details-description">{{ furniture[0].description }}</span>
+          </p>
+        </div>
+        <!--Edit and Delete are only for creator-->
+        <div id="action-buttons">
+          <!-- {{#if isLoggedIn}}
+                    {{#if isOwner}} -->
+          <a href="/furniture/edit/{{ furniture[0]._id }}" class="details-btn"
+            >Edit</a
+          >
+          <a href="/furniture/delete/{{ furniture[0]._id }}" class="details-btn"
+            >Delete</a
+          >
+          <!-- {{!-- {{else}}
+                    {{#if amISignedUp}}
+          <p id="already-liked">You already liked this stone!</p>
+          {{else}}
+          <a href="/like/{{ creator._id }}" class="details-btn">Buy</a>
+          {{/if}} --}}
+                    {{/if}}
+                    {{/if}} -->
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!--Edit and Delete are only for creator-->
+<!-- {{#if isLoggedIn}}
+<div id="action-buttons">
+    {{#if isOwner}}
+    <a href="/stone/edit/{{stone._id}}" id="edit-btn">Edit</a>
+    <a href="/stone/delete/{{stone._id}}" id="delete-btn">Delete</a>
+    {{/if}}
+    {{#unless isLiker}}
+    {{#unless isOwner}}
+    <a href="/stone/like/{{stone._id}}" id="like-btn">Like</a>
+    {{/unless}}
+    {{/unless}}
+    {{#if isLiker}}
+    <p id="already-liked">You already liked this stone!</p>
+    {{/if}}
+</div>
+{{/if}} --}} -->
