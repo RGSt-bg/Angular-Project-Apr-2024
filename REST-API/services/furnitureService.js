@@ -15,7 +15,8 @@ exports.getAllCategories = () => Category.find();
 exports.getAllByCategory = async (category) => {
   try {
     return await Furniture.find({ category: category });
-  } catch (err) {
+  }
+  catch (err) {
     console.error(err);
     throw err;
   }

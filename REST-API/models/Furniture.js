@@ -11,7 +11,7 @@ const furnitureSchema = new mongoose.Schema({
     type: String,
     ref: "Category",
   },
-  image: {
+  imageFurniture: {
     type: String,
     required: [true, "Image is required"],
     match: [/https?:\/\//, "Please, fill a valid HTTP address!"],

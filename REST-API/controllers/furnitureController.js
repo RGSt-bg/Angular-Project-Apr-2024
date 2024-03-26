@@ -19,7 +19,6 @@ router.get("/categories", async (req, res) => {    // Ready!
 });
 
 router.get("/furnitureList", async (req, res) => {
-console.log(req.query);
   const calledFrom = req.query.calledFrom || "";
   const category = req.query.category || "";
   let furniture;
@@ -42,6 +41,7 @@ console.log(req.query);
   [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom, category);
 
   // res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
+console.log(furniture);
   res.send(furniture);
 });
 
