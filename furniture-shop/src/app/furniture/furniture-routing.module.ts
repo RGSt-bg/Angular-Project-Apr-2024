@@ -9,9 +9,9 @@ const routes: Routes = [
   { path: 'furniture/categories', component: CategoriesComponent },
   { path: 'furniture/createCategory', component: CreateCategoryComponent },
   { path: 'furniture/createFurniture', component: CreateFurnitureComponent },
-  { path: 'furniture/furnitureList', component: FurnituresComponent },
+  // { path: 'furniture/furnitureList', component: FurnituresComponent },
+  { path: 'furniture/furnitureList/:calledFrom/:category', component: FurnituresComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

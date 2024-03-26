@@ -39,7 +39,6 @@ export class CreateFurnitureComponent {
       } = formValue;
 
       if (name && category && imageFurniture && price && description) {
-console.log(name, category, imageFurniture, color, material, price, description);
 // TODO: create auth/login to work this functionality
         this.apiService
           .createFurniture(

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { FurnitureRoutingModule } from './furniture-routing.module';
-import {FormsModule} from '@angular/forms';
 
 import { CategoriesComponent } from './categories/categories.component';
 import { FurnituresComponent } from './furnitures/furnitures.component';
@@ -11,7 +11,9 @@ import { CreateFurnitureComponent } from './create-furniture/create-furniture.co
 
 @NgModule({
   declarations: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent],
-  imports: [CommonModule, RouterModule, FurnitureRoutingModule, FormsModule],
+  imports: [CommonModule, FurnitureRoutingModule, RouterModule, FormsModule],
   exports: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent],
 })
+
 export class FurnitureModule {}
+console.log('furniture.module');

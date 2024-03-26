@@ -18,10 +18,8 @@ export class ApiService {
   }
 
   getFurnitureByCategory(category: string) {
-console.log(category);
     const { apiUrl } = environment;
-console.log(`${apiUrl}/furniture/furnitureList?calledFrom=${category}`);
-    return this.http.get<Furniture[]>(`${apiUrl}/furniture/furnitureList?calledFrom=${category}`);
+    return this.http.get<Furniture[]>(`${apiUrl}/furniture/furnitureList?calledFrom=category&category=${category}`);
   }
 
   createCategory(category: string, imageCategory: string) {

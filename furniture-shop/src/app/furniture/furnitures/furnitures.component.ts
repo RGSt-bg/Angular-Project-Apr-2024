@@ -30,18 +30,22 @@ export class FurnituresComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-console.log('Furnitures component. loaded');
-    this.route.queryParamMap.pipe(
-      switchMap((params: ParamMap) => {
-        const category = params.get('category');
-        if (category) {
-          return this.apiService.getFurnitureByCategory(category);
-        } else {
-          return [];
-        }
-      })
-    ).subscribe((furniture) => {
-      this.furniture = furniture;
-    });
+    this.route.params
+      .pipe(
+        switchMap((params) => {
+          const calledFrom = params['calledFrom'];
+          const category = params['category'];
+console.log('ngOnInit -> calledFrom, category: ', calledFrom, category);
+          if (calledFrom && category) {
+            return this.apiService.getFurnitureByCategory(category);
+          } else {
+            return [];
+          }
+        })
+      )
+      .subscribe((furniture) => {
+        this.furniture = furniture;
+console.log('ngOnInit -> this.furniture: ',this.furniture);
+      });
   }
 }
