@@ -32,7 +32,7 @@ router.get("/furnitureList", async (req, res) => {
   }
   else if (calledFrom === "newProducts") {
     furniture = await furnitureService.getLatestFurnitures();
-    furniture = furniture.map(doc => doc.toObject());
+    // furniture = furniture.map(doc => doc.toObject());
   }
   else {
     furniture = await furnitureService.getAll().lean();

@@ -30,7 +30,12 @@ exports.getLatestFurnitures = async () => {
     return await Furniture.find({
       createdAt: { $gte: thirtyDaysAgo },
     });
-  } catch (err) {
+    
+// const temp = await Furniture.find({createdAt: { $gte: thirtyDaysAgo },});
+// console.log(temp);
+// return temp;
+  }
+  catch (err) {
     console.error(err);
     throw err;
   }
