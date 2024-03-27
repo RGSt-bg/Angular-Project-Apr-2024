@@ -162,25 +162,47 @@ router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
   res.redirect("/furniture/furnitureList");
 });
 
+// Search route for back-end
+// router.get("/search", async (req, res) => {
+
+//   try {
+//       let isNewTitle = "";
+//       let isNew = "";
+//       let noFurnitures = "";
+//       const name = req.query.search;
+//       const calledFrom = req.query.calledFrom;
+//       const furniture = await furnitureService.search(name);
+
+//       [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom);
+
+//       res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
+//   }
+
+//   catch (err) {
+//       console.error(err);
+//       res.status(500).send("Server Error");
+//   }
+// });
+
+// Search route for front-end
 router.get("/search", async (req, res) => {
+  // router.get("/search/:calledFrom/:searchString", async (req, res) => {
+  // const calledFrom = req.query.calledFrom || "";
+  // const searchString = req.params.searchString || "";
+  const calledFrom = req.query.calledFrom;
+  const searchString = req.params.searchString;
+  console.log('furnitureController - search: ', calledFrom);
+  console.log('furnitureController - search: ', searchString);
 
-    try {
-        let isNewTitle = "";
-        let isNew = "";
-        let noFurnitures = "";
-        const name = req.query.search;
-        const calledFrom = req.query.calledFrom;
-        const furniture = await furnitureService.search(name);
-  
-        [isNew, noFurnitures, isNewTitle] = calledFromWhere(calledFrom);
-  
-        res.render("furniture/furnitureList", { furniture, isNewTitle, isNew, noFurnitures });
-    }
+  try {
+      const furniture = await furnitureService.search(searchString);
+      res.send(furniture);
+  }
 
-    catch (err) {
-        console.error(err);
-        res.status(500).send("Server Error");
-    }
+  catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;
