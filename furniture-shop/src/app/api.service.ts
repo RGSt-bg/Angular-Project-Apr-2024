@@ -19,7 +19,14 @@ export class ApiService {
 
   getFurnitureByCategory(category: string) {
     const { apiUrl } = environment;
+console.log('apiService - getFurnitureByCategory: ', apiUrl);
     return this.http.get<Furniture[]>(`${apiUrl}/furniture/furnitureList?calledFrom=category&category=${category}`);
+  }
+
+  getLatestFurnitures() {
+    const { apiUrl } = environment;
+console.log('apiService - getLatestFurnitures: ', apiUrl);
+    return this.http.get<Furniture[]>(`${apiUrl}/furniture/furnitureList?calledFrom=newProducts`);
   }
 
   createCategory(category: string, imageCategory: string) {
@@ -40,7 +47,13 @@ export class ApiService {
 
   getFurnitureDetails(furnitureId: string) {
     const { apiUrl } = environment;
-    
+
     return this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
+  }
+
+  searchFurnitures(searchString: string) {
+    const { apiUrl } = environment;
+console.log('apiService - searchFurnitures: ', apiUrl);
+    return this.http.get<Furniture[]>(`${apiUrl}/furniture/furnitureList?calledFrom=search&searchString=${searchString}`);
   }
 }

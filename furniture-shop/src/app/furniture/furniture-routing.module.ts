@@ -12,11 +12,14 @@ const routes: Routes = [
   { path: 'furniture/createCategory', component: CreateCategoryComponent },
   { path: 'furniture/createFurniture', component: CreateFurnitureComponent },
   { path: 'furniture/furnitureList/:calledFrom/:category', component: FurnituresComponent },
+  { path: 'furniture/furnitureList/:calledFrom', component: FurnituresComponent },
   { path: 'furniture/details/:furnitureId', component: DetailsComponent},
   { path: 'furniture/search', component: SearchComponent},
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class FurnitureRoutingModule { }

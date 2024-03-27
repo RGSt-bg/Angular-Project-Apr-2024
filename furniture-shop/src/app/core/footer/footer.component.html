@@ -3,7 +3,7 @@
     <p>
       <a routerLink="/home">Home</a> | 
       <a routerLink="/furniture/categories">Categories</a> |
-      <a routerLink="/furnitures/furnitureList?calledFrom=newProducts">New Furnitures</a> | 
+      <a [routerLink]="['/furniture/furnitureList', 'newProducts']">New Furnitures</a> | 
       <a routerLink="/about">About Us</a> |
       <a routerLink="/contacts">Contact Us</a>
     </p>

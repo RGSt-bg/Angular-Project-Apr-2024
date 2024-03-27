@@ -18,4 +18,3 @@ import { DetailsComponent } from './details/details.component';
 })
 
 export class FurnitureModule {}
-console.log('furniture.module');
