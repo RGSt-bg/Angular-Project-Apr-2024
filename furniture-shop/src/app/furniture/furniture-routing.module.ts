@@ -5,7 +5,6 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { CreateFurnitureComponent } from './create-furniture/create-furniture.component';
 import { FurnituresComponent } from './furnitures/furnitures.component';
 import { DetailsComponent } from './details/details.component';
-import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: 'furniture/categories', component: CategoriesComponent },
@@ -13,8 +12,8 @@ const routes: Routes = [
   { path: 'furniture/createFurniture', component: CreateFurnitureComponent },
   { path: 'furniture/furnitureList/:calledFrom/:category', component: FurnituresComponent },
   { path: 'furniture/furnitureList/:calledFrom', component: FurnituresComponent },
+  { path: 'furniture/search/:calledFrom/:searchString', component: FurnituresComponent },
   { path: 'furniture/details/:furnitureId', component: DetailsComponent},
-  { path: 'furniture/search', component: SearchComponent},
 ];
 
 @NgModule({

@@ -8,11 +8,10 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FurnituresComponent } from './furnitures/furnitures.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { CreateFurnitureComponent } from './create-furniture/create-furniture.component';
-import { SearchComponent } from './search/search.component';
 import { DetailsComponent } from './details/details.component';
 
 @NgModule({
-  declarations: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent, SearchComponent, DetailsComponent],
+  declarations: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent, DetailsComponent],
   imports: [CommonModule, FurnitureRoutingModule, RouterModule, FormsModule],
   exports: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent],
 })

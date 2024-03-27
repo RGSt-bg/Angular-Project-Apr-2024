@@ -15,10 +15,6 @@
           <li><a routerLink="/home">Home</a></li>
           <li><a routerLink="/furniture/categories">Categories</a></li>
           <li><a [routerLink]="['/furniture/furnitureList', 'newProducts']">New Furnitures</a></li>
-          <!-- <li><a [routerLink]="['/furniture/furnitureList', { calledFrom: 'newProducts' }]">New Furnitures</a></li> - first bot's solution -->
-          <!-- <li><a [routerLink]="['/furniture/furnitureList']" [queryParams]="{ calledFrom: 'newProducts' }">New Furnitures</a></li> - second bot's solution -->
-          <!-- <li><a class="category" [routerLink]="['/furniture/furnitureList', { calledFrom: 'newProducts' }]">New Furnitures</a></li> -->
-
           <!-- {{#if isAuthenticated}} -->
           <li><a routerLink="/furniture/createFurniture">Create Furniture</a></li>
           <li><a routerLink="/furniture/createCategory">Create Category</a></li>

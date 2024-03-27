@@ -35,44 +35,20 @@ export class FurnituresComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-//   ngOnInit(): void {
-//     this.route.params.pipe(
-//         switchMap((params) => {
-//           const calledFrom = params['calledFrom'];
-//           const category = params['category'];
-// console.log('calledFrom: ', calledFrom);
-// console.log('category: ', category);
-//           if (calledFrom && category) {
-//             this.setMessages(calledFrom, category);
-//             return this.apiService.getFurnitureByCategory(category);
-//           } else {
-//             return [];
-//           }
-//         })
-//       )
-//       .subscribe((furniture) => {
-//         this.furniture = furniture;
-//       });
-//   }
-
 ngOnInit(): void {
   this.route.params.pipe(
     switchMap((params) => {
       this.calledFrom = params['calledFrom'];
       this.category = params['category'];
       this.searchString = params['searchString'];
-console.log('FurnituresComponent -> calledFrom: ', this.calledFrom);
-console.log('FurnituresComponent -> category: ', this.category);
+
       if (this.calledFrom === 'category' && this.category) {
-console.log('FurnituresComponent -> category: ', this.category);
         return this.apiService.getFurnitureByCategory(this.category);
       }
       else if (this.calledFrom === 'newProducts') {
-console.log('FurnituresComponent -> newProducts');
         return this.apiService.getLatestFurnitures();
       }
       else if (this.searchString) {
-console.log('FurnituresComponent -> searchString: ', this.searchString);
         return this.apiService.searchFurnitures(this.searchString);
       }
       else {
