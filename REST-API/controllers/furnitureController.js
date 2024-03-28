@@ -11,7 +11,7 @@ const { query } = require("express");
 
 const mongoose = require("mongoose");
 
-router.get("/categories", async (req, res) => {    // Ready!
+router.get("/categories", async (req, res) => {
   let categories = await furnitureService.getAllCategories().lean();
   categories = addLocations(categories);
 // res.render("furniture/categories", { categories });
@@ -155,12 +155,35 @@ router.post("/edit/:furnitureId", isAuth, async (req, res) => {
   }
 });
 
-router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
-  console.log("In delete route");
-  await furnitureService.delete(req.params.furnitureId);
-  console.log("After delete action");
-  res.redirect("/furniture/furnitureList");
+// Delete route for front-end
+router.get("/delete/:furnitureId", async (req, res) => {
+  const furnitureId = req.params.furnitureId || "";
+  await furnitureService.delete(furnitureId);
+  res.send({"message": "The furniture was deleted successfully!"});
 });
+
+// Search route for front-end
+router.get("/search", async (req, res) => {
+  const calledFrom = req.query.calledFrom || "";
+  const searchString = req.query.searchString || "";
+
+  try {
+      const furniture = await furnitureService.search(searchString);
+      res.send(furniture);
+  }
+
+  catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+  }
+});
+
+// Delete route for back-end
+// router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
+//   const furnitureId = req.query.furnitureId || "";
+//   await furnitureService.delete(furnitureId);
+//   res.redirect("/furniture/furnitureList");
+// });
 
 // Search route for back-end
 // router.get("/search", async (req, res) => {
@@ -183,22 +206,6 @@ router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
 //       res.status(500).send("Server Error");
 //   }
 // });
-
-// Search route for front-end
-router.get("/search", async (req, res) => {
-  const calledFrom = req.query.calledFrom || "";
-  const searchString = req.query.searchString || "";
-
-  try {
-      const furniture = await furnitureService.search(searchString);
-      res.send(furniture);
-  }
-
-  catch (err) {
-      console.error(err);
-      res.status(500).send("Server Error");
-  }
-});
 
 module.exports = router;
 
