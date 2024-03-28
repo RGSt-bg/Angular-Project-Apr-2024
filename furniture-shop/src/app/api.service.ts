@@ -53,4 +53,10 @@ export class ApiService {
     const { apiUrl } = environment;
     return this.http.get<Furniture[]>(`${apiUrl}/furniture/search?calledFrom=search&searchString=${searchString}`);
   }
+
+  deleteFurniture(furnitureId: string) {
+    const { apiUrl } = environment;
+    return this.http.get<Furniture>(`${apiUrl}/furniture/delete/${furnitureId}`);
+  }
+  
 }

@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'furniture/furnitureList/:calledFrom/:category', component: FurnituresComponent },
   { path: 'furniture/furnitureList/:calledFrom', component: FurnituresComponent },
   { path: 'furniture/search/:calledFrom/:searchString', component: FurnituresComponent },
-  { path: 'furniture/details/:furnitureId', component: DetailsComponent},
+  { path: 'furniture/delete/:furnitureId', component: FurnituresComponent },
+  { path: 'furniture/details/:furnitureId/:calledFrom', component: DetailsComponent},
 ];
 
 @NgModule({

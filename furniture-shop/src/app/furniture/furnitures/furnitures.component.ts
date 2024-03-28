@@ -9,6 +9,7 @@ import { switchMap } from 'rxjs';
   templateUrl: './furnitures.component.html',
   styleUrls: ['./furnitures.component.css'],
 })
+
 export class FurnituresComponent implements OnInit {
   isNewTitle: string = '';
   isNew: string = '';
@@ -80,4 +81,5 @@ export class FurnituresComponent implements OnInit {
       this.isNewTitle = 'Our Furnitures';
     }
   }
+
 }
