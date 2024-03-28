@@ -51,10 +51,6 @@ export class ApiService {
 
   searchFurnitures(searchString: string) {
     const { apiUrl } = environment;
-console.log('apiService - searchFurnitures: ', apiUrl);
-console.log('apiService - searchFurnitures: ', searchString);
-console.log('apiService - searchFurnitures: ', `${apiUrl}/furniture/search?calledFrom=search&searchString=${searchString}`);
-    // return this.http.get<Furniture[]>(`${apiUrl}/furniture/search`);
     return this.http.get<Furniture[]>(`${apiUrl}/furniture/search?calledFrom=search&searchString=${searchString}`);
   }
 }

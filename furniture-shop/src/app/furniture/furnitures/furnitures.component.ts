@@ -35,31 +35,31 @@ export class FurnituresComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-ngOnInit(): void {
-  this.route.params.pipe(
-    switchMap((params) => {
-      this.calledFrom = params['calledFrom'];
-      this.category = params['category'];
-      this.searchString = params['searchString'];
+  ngOnInit(): void {
+    this.route.params.pipe(
+      switchMap((params) => {
+        this.calledFrom = params['calledFrom'];
+        this.category = params['category'];
+        this.searchString = params['searchString'];
 
-      if (this.calledFrom === 'category' && this.category) {
-        return this.apiService.getFurnitureByCategory(this.category);
-      }
-      else if (this.calledFrom === 'newProducts') {
-        return this.apiService.getLatestFurnitures();
-      }
-      else if (this.searchString) {
-        return this.apiService.searchFurnitures(this.searchString);
-      }
-      else {
-        return [];
-      }
-    })
-  ).subscribe((furniture: any) => {
-    this.furniture = furniture as Furniture[];
-    this.setMessages(this.calledFrom, this.category);
-  });
-}
+        if (this.calledFrom === 'category' && this.category) {
+          return this.apiService.getFurnitureByCategory(this.category);
+        }
+        else if (this.calledFrom === 'newProducts') {
+          return this.apiService.getLatestFurnitures();
+        }
+        else if (this.searchString) {
+          return this.apiService.searchFurnitures(this.searchString);
+        }
+        else {
+          return [];
+        }
+      })
+    ).subscribe((furniture: any) => {
+      this.furniture = furniture as Furniture[];
+      this.setMessages(this.calledFrom, this.category);
+    });
+  }
 
   setMessages(calledFrom: string, category: string) {
     if (calledFrom === 'newProducts') {
@@ -67,11 +67,11 @@ ngOnInit(): void {
       this.noFurnitures = 'Sorry, there are no new furnitures!';
       this.isNewTitle = 'New Furnitures';
     } else if (calledFrom === 'search') {
-      this.isNew = 'The furniture that meets your criteria ...';
+      this.isNew = 'Furniture that meets your criteria ...';
       this.noFurnitures ='Sorry, there are no furnitures that meets your criteria!';
       this.isNewTitle = 'Found Furnitures';
     } else if (calledFrom === 'category') {
-      this.isNew = 'The furnitures by category ...';
+      this.isNew = 'Furnitures by category ...';
       this.noFurnitures ='Sorry, there are no furnitures in this category yet!';
       this.isNewTitle = `${category}`;
     } else {
