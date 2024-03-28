@@ -186,13 +186,8 @@ router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
 
 // Search route for front-end
 router.get("/search", async (req, res) => {
-  // router.get("/search/:calledFrom/:searchString", async (req, res) => {
-  // const calledFrom = req.query.calledFrom || "";
-  // const searchString = req.params.searchString || "";
-  const calledFrom = req.query.calledFrom;
-  const searchString = req.params.searchString;
-  console.log('furnitureController - search: ', calledFrom);
-  console.log('furnitureController - search: ', searchString);
+  const calledFrom = req.query.calledFrom || "";
+  const searchString = req.query.searchString || "";
 
   try {
       const furniture = await furnitureService.search(searchString);
