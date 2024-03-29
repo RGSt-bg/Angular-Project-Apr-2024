@@ -2,9 +2,9 @@
   <div id="content">
     <section id="details">
       <div id="details-wrapper">
-        <p id="details-title">Name: {{ furniture[0].name }}</p>
+        <p id="details-title">Name: {{ furniture.name }}</p>
         <div id="img-wrapper">
-          <img src="{{ furniture[0].imageFurniture }}" />
+          <img src="{{ furniture.imageFurniture }}" />
         </div>
         <div id="info-wrapper">
           <table>
@@ -12,12 +12,12 @@
               <td>
                 <p>
                   Category:
-                  <span id="details-category">{{ furniture[0].category }}</span>
+                  <span id="details-category">{{ furniture.category }}</span>
                 </p>
               </td>
               <td>
                 <p>
-                  Color: <span id="details-color">{{ furniture[0].color }}</span>
+                  Color: <span id="details-color">{{ furniture.color }}</span>
                 </p>
               </td>
             </tr>
@@ -25,19 +25,19 @@
               <td>
                 <p>
                   Material:
-                  <span id="details-dimensions">{{ furniture[0].material }}</span>
+                  <span id="details-dimensions">{{ furniture.material }}</span>
                 </p>
               </td>
               <td>
                 <p>
-                  Price: $<span id="details-price">{{ furniture[0].price }}</span>
+                  Price: $<span id="details-price">{{ furniture.price }}</span>
                 </p>
               </td>
             </tr>
           </table>
           <p>
             Description:
-            <span id="details-description">{{ furniture[0].description }}</span>
+            <span id="details-description">{{ furniture.description }}</span>
           </p>
         </div>
         <!--Edit and Delete are only for creator-->

@@ -45,11 +45,8 @@ export class ApiService {
 
   getFurnitureDetails(furnitureId: string) {
     const { apiUrl } = environment;
-console.log(furnitureId);
-const payload = this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
-console.log(payload);
-return payload;
-    // return this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
+
+    return this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
   }
 
   searchFurnitures(searchString: string) {
