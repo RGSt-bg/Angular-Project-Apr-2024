@@ -13,7 +13,7 @@ import { DetailsComponent } from './details/details.component';
 @NgModule({
   declarations: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent, DetailsComponent],
   imports: [CommonModule, FurnitureRoutingModule, RouterModule, FormsModule],
-  exports: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent],
+  exports: [CategoriesComponent, FurnituresComponent, CreateCategoryComponent, CreateFurnitureComponent, DetailsComponent],
 })
 
 export class FurnitureModule {}

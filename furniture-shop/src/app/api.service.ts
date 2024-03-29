@@ -45,8 +45,11 @@ export class ApiService {
 
   getFurnitureDetails(furnitureId: string) {
     const { apiUrl } = environment;
-
-    return this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
+console.log(furnitureId);
+const payload = this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
+console.log(payload);
+return payload;
+    // return this.http.get<Furniture>(`${apiUrl}/furniture/details/${furnitureId}`);
   }
 
   searchFurnitures(searchString: string) {
@@ -57,6 +60,12 @@ export class ApiService {
   deleteFurniture(furnitureId: string) {
     const { apiUrl } = environment;
     return this.http.get<Furniture>(`${apiUrl}/furniture/delete/${furnitureId}`);
+  }
+  
+  editFurniture(furnitureId: string, name: string, category: string, imageFurniture: string, color: string, material: string, price: number, description: string) {
+    const { apiUrl } = environment;
+    const payload = { name, category, imageFurniture, color, material, price, description };
+    return this.http.post<Furniture>(`${apiUrl}/furniture/edit/${furnitureId}`, payload);
   }
   
 }

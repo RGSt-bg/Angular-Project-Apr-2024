@@ -1,9 +1,9 @@
 <main>
   <div id="content">
     <h1>
-      <b><i>Create Furniture</i></b>
+      <b><i>{{ isEditMode ? 'Edit Furniture' : 'Create Furniture' }}</i></b>
     </h1>
-    <form #form="ngForm" (ngSubmit)="addFurniture(form)">
+    <form #form="ngForm" (ngSubmit)="submitForm(form)">
       <div class="form_settings">
         <p>
           <span>Name*</span
@@ -80,7 +80,7 @@
         </p>
         <p style="padding-top: 15px">
           <span>&nbsp;</span>
-          <button class="submit">Create</button>
+          <button class="submit">{{ isEditMode ? 'Edit' : 'Create' }}</button>
         </p>
         <p>* - required field</p>
       </div>

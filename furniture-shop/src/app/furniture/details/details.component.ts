@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { switchMap, take } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
-import { Furniture } from 'src/app/types/furniture';
 
 @Component({
   selector: 'app-details',
@@ -10,19 +8,8 @@ import { Furniture } from 'src/app/types/furniture';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
-  calledFrom: string = '';
-  furniture: Furniture[] = [
-    {
-      name: '',
-      category: '',
-      imageFurniture: '',
-      color: '',
-      material: '',
-      price: 0,
-      description: '',
-      _id: '',
-    },
-  ];
+  furnitureId: string = '';
+  furniture: any = {};
 
   constructor(
     private apiService: ApiService,
@@ -31,29 +18,38 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const furnitureId = this.route.snapshot.paramMap.get('furnitureId');
-    const calledFrom = this.route.snapshot.paramMap.get('calledFrom');
-    this.calledFrom = calledFrom!;
-    this.apiService.getFurnitureDetails(furnitureId!).subscribe((furniture) => {
-      this.furniture = [furniture];
+    this.route.params.subscribe(params => {
+      this.furnitureId = params['furnitureId'];
+      this.apiService.getFurnitureDetails(this.furnitureId).subscribe((furniture) => {
+        this.furniture = furniture;
+      });
     });
   }
 
-  deleteFurniture(furnitureId: string) {
-    this.apiService.deleteFurniture(furnitureId).subscribe(
-        () => {
-            if (this.calledFrom === 'category') {
-                this.router.navigate(['/furniture/furnitureList', this.calledFrom, this.furniture[0].category]);
-            } else if (this.calledFrom === 'newProducts') {
-                this.router.navigate(['/furniture/furnitureList', this.calledFrom]);
-            } else {
-                this.router.navigate(['/home']);
-            }
-        },
-        (error) => {
-            console.error('Error deleting furniture: ', error);
-        }
+  deleteFurniture() {
+    this.apiService.deleteFurniture(this.furnitureId).subscribe(
+      () => {
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        console.error('Error deleting furniture: ', error);
+      }
     );
-}
+  }
 
+  editFurniture() {
+    this.router.navigate(['/create-furniture'], {
+      queryParams: {
+        editMode: true,
+        furnitureId: this.furnitureId,
+        name: this.furniture.name,
+        category: this.furniture.category,
+        imageFurniture: this.furniture.imageFurniture,
+        color: this.furniture.color,
+        material: this.furniture.material,
+        price: this.furniture.price,
+        description: this.furniture.description
+      }
+    });
+  }
 }
