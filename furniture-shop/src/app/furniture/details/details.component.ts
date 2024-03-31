@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/api.service';
 export class DetailsComponent implements OnInit {
   furnitureId: string = '';
   furniture: any = {};
+  calledFrom: string = '';
 
   constructor(
     private apiService: ApiService,
@@ -18,18 +19,29 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    const calledFrom = this.route.snapshot.paramMap.get('calledFrom');
+    this.calledFrom = calledFrom || '';
+    this.route.params.subscribe((params) => {
       this.furnitureId = params['furnitureId'];
-      this.apiService.getFurnitureDetails(this.furnitureId).subscribe((furniture) => {
-        this.furniture = furniture;
-      });
+      this.apiService
+        .getFurnitureDetails(this.furnitureId)
+        .subscribe((furniture) => {
+          this.furniture = furniture;
+        });
     });
   }
 
   deleteFurniture() {
     this.apiService.deleteFurniture(this.furnitureId).subscribe(
       () => {
-        this.router.navigate(['/home']);
+        if (this.calledFrom === 'category') {
+            this.router.navigate(['/furniture/furnitureList', this.calledFrom,
+            this.furniture.category,]);
+        } else if (this.calledFrom === 'newProducts') {
+            this.router.navigate(['/furniture/furnitureList', this.calledFrom]);
+        } else {
+            this.router.navigate(['/home']);
+        }
       },
       (error) => {
         console.error('Error deleting furniture: ', error);
@@ -38,8 +50,9 @@ export class DetailsComponent implements OnInit {
   }
 
   editFurniture() {
-    this.router.navigate(['/create-furniture'], {
+    this.router.navigate([`/furniture/edit/${this.furnitureId}`], {
       queryParams: {
+        calledFrom: this.calledFrom,
         editMode: true,
         furnitureId: this.furnitureId,
         name: this.furniture.name,
@@ -48,8 +61,8 @@ export class DetailsComponent implements OnInit {
         color: this.furniture.color,
         material: this.furniture.material,
         price: this.furniture.price,
-        description: this.furniture.description
-      }
+        description: this.furniture.description,
+      },
     });
   }
 }

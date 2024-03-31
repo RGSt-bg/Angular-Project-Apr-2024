@@ -36,9 +36,7 @@ export class ApiService {
   createFurniture(name: string, category: string, imageFurniture: string, color: string, material: string, price: number, description: string) {
     const { apiUrl } = environment;
 
-    // if (!name || !category || !imageFurniture || !color || !material || !price || !description) {
-    //   return;
-    // }
+  console.log('api.service -> createFurniture', name, category, imageFurniture, color, material, price, description);
     const payload = { name, category, imageFurniture, color, material, price, description };
     return this.http.post<Furniture>(`${apiUrl}/furniture/createFurniture`, payload);
   }
@@ -59,10 +57,10 @@ export class ApiService {
     return this.http.get<Furniture>(`${apiUrl}/furniture/delete/${furnitureId}`);
   }
   
-  editFurniture(furnitureId: string, name: string, category: string, imageFurniture: string, color: string, material: string, price: number, description: string) {
+  editFurniture(_id: string, name: string, category: string, imageFurniture: string, color: string, material: string, price: number, description: string) {
     const { apiUrl } = environment;
     const payload = { name, category, imageFurniture, color, material, price, description };
-    return this.http.post<Furniture>(`${apiUrl}/furniture/edit/${furnitureId}`, payload);
+    return this.http.post<Furniture>(`${apiUrl}/furniture/edit/${_id}`, payload);
   }
   
 }

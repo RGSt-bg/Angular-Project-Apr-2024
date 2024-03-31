@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'furniture/furnitureList/:calledFrom', component: FurnituresComponent },
   { path: 'furniture/search/:calledFrom/:searchString', component: FurnituresComponent },
   { path: 'furniture/delete/:furnitureId', component: FurnituresComponent },
-  { path: 'furniture/edit/:furnitureId', component: FurnituresComponent },
+  { path: 'furniture/edit/:furnitureId', component: CreateFurnitureComponent },
   { path: 'furniture/details/:furnitureId/:calledFrom', component: DetailsComponent},
 ];
 

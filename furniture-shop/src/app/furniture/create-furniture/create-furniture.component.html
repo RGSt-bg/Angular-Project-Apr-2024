@@ -11,8 +11,8 @@
             class="contact"
             type="text"
             name="name"
-            #inputName="ngModel"
-            ngModel
+            placeholder="minimum 4 characters"
+            [(ngModel)]="furniture.name" 
             required
             minlength="4"
           />
@@ -29,8 +29,8 @@
             class="contact"
             type="text"
             name="imageFurniture"
-            #inputImageFurniture="ngModel"
-            ngModel
+            placeholder="http(s)://..."
+            [(ngModel)]="furniture.imageFurniture"
             required
           />
         </p>
@@ -40,8 +40,7 @@
             class="contact"
             type="text"
             name="color"
-            #inputColor="ngModel"
-            ngModel
+            [(ngModel)]="furniture.color"
           />
         </p>
         <p>
@@ -50,8 +49,7 @@
             class="contact"
             type="text"
             name="material"
-            #inputMaterial="ngModel"
-            ngModel
+            [(ngModel)]="furniture.material"
           />
         </p>
         <p>
@@ -60,20 +58,19 @@
             class="contact"
             type="number"
             name="price"
-            #inputPrice="ngModel"
-            ngModel
+            [(ngModel)]="furniture.price"
             required
           />
         </p>
         <p>
-          <span>Description* (minimum 20 characters)</span>
+          <span>Description*</span>
           <textarea
             class="description textarea"
             rows="8"
             cols="50"
             name="description"
-            #textareaDescription="ngModel"
-            ngModel
+            placeholder="minimum 20 characters"
+            [(ngModel)]="furniture.description"
             required
             minlength="20">
             </textarea>
