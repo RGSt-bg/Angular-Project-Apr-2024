@@ -69,14 +69,16 @@ router.get("/createFurniture", async (req, res) => {
   res.send({ category, actionType: "Create" });
 });
 
-router.post("/createFurniture", isAuth, async (req, res) => {
+// router.post("/createFurniture", isAuth, async (req, res) => {
+  router.post("/createFurniture", async (req, res) => {
   const newFurniture = req.body;
-console.log(newFurniture);
   const category = await furnitureService.getAllCategories().lean();
   const actionType = "Create";
 
   try {
-    await furnitureService.create(req.user._id, newFurniture, { actionType });
+  console.log('BE -> furnitureController -> before create');
+    await furnitureService.create(newFurniture, { actionType });
+    // await furnitureService.create(req.user._id, newFurniture, { actionType });
     // res.redirect("/furniture/furnitureList");
     res.send({"message": "The furniture was created successfully!"});
   }
@@ -141,12 +143,14 @@ router.get("/edit/:furnitureId", isAuth, isProductOwner, async (req, res) => {
   }
 });
 
-router.post("/edit/:furnitureId", isAuth, async (req, res) => {
+// Edit route for front-end
+router.post("/edit/:furnitureId", async (req, res) => {
   const editedFurniture = req.body;
 
   try {
     await furnitureService.edit(req.params.furnitureId, editedFurniture);
-    res.redirect(`/furniture/details/${req.params.furnitureId}`);
+    // res.redirect(`/furniture/details/${req.params.furnitureId}`);
+    res.send({"message": "The furniture was edited successfully!"});
   } catch (err) {
     res.render(`furniture/editCreate/${req.params.furnitureId}`, {
       ...editedFurniture,
@@ -177,6 +181,21 @@ router.get("/search", async (req, res) => {
       res.status(500).send("Server Error");
   }
 });
+
+// Edit route for back-end
+// router.post("/edit/:furnitureId", isAuth, async (req, res) => {
+//   const editedFurniture = req.body;
+
+//   try {
+//     await furnitureService.edit(req.params.furnitureId, editedFurniture);
+//     res.redirect(`/furniture/details/${req.params.furnitureId}`);
+//   } catch (err) {
+//     res.render(`furniture/editCreate/${req.params.furnitureId}`, {
+//       ...editedFurniture,
+//       error: getErrorMessage(err),
+//     });
+//   }
+// });
 
 // Delete route for back-end
 // router.get("/delete/:furnitureId", isProductOwner, async (req, res) => {
