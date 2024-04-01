@@ -3,7 +3,7 @@ export interface User {
   username: string;
   email: string;
   password: string;
-  buyedList: string[];
+  // buyedList: string[];
   __v: number;
 }
 

@@ -6,7 +6,7 @@ import { BehaviorSubject, Subscription, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnDestroy {
   
   private user$$ = new BehaviorSubject<UserForAuth | undefined>(undefined);
   private user$ = this.user$$.asObservable();
@@ -27,6 +27,7 @@ export class UserService {
   }
 
   login(email: string, password: string) {
+console.log('user service component started: ', email, password);
     return this.http
       .post<UserForAuth>('/auth/login', { email, password })
       .pipe(tap((user) => this.user$$.next(user)));
@@ -42,27 +43,23 @@ export class UserService {
 //        }))
 //  };
 
-  register(
-    username: string,
-    email: string,
-    tel: string,
-    password: string,
-    rePassword: string
-  ) {
+  register(username: string, email: string, 
+          password: string, rePassword: string)
+    {
     return this.http
-      .post<UserForAuth>('/api/register', {
-        username,
-        email,
-        tel,
-        password,
-        rePassword,
-      })
+      .post<UserForAuth>('/auth/register', 
+      {username, email, password, rePassword,})
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
   logout() {
     return this.http
-      .post('/api/logout', {})
+      .post('/auth/logout', {})
       .pipe(tap(() => this.user$$.next(undefined)));
   }
+  
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+  }
+  
 }

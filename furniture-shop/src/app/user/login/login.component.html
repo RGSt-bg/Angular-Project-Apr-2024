@@ -1,24 +1,42 @@
 <main>
-    <div id="content">
-        <h1><b><i>Login Form</i></b></h1>
-        <form method="post">
-            <div class="form_settings">
-                <p>
-                    <span>Email address</span>
-                    <input class="contact" type="text" name="email" value="" />
-                </p>
-                <p>
-                    <span>Password</span>
-                    <input class="contact" type="password" name="password" value="" />
-                </p>
-                <p style="padding-top: 15px">
-                    <span>&nbsp;</span>
-                    <input class="submit" type="submit" name="login" value="Login" />
-                </p>
-                <p align="center">
-                    Not registered? <a routerLink="/auth/register">Register</a>
-                </p>
-            </div>
-        </form>
-    </div>
+  <div id="content">
+    <h1>
+      <b><i>Login Form</i></b>
+    </h1>
+    <form #form="ngForm" (ngSubmit)="login(form)">
+      <div class="form_settings">
+        <p>
+          <span>Email address</span>
+          <input
+            class="contact"
+            type="email"
+            name="email"
+            ngModel
+            #inputEmail="ngModel"
+            required
+          />
+        </p>
+        <p>
+          <span>Password</span>
+          <input
+            class="contact"
+            type="password"
+            name="password"
+            ngModel
+            #inputPassword="ngModel"
+            required
+          />
+        </p>
+        <p style="padding-top: 15px">
+          <span>&nbsp;</span>
+          <input class="submit" type="submit" name="login" 
+            [style]="{ backgroundColor: form.invalid ? 'lightgrey' : 'rgb(70, 70, 70)' }" 
+            [disabled]="form.invalid" value="Login" />
+        </p>
+        <p align="center">
+          Not registered? <a routerLink="/auth/register">Register</a>
+        </p>
+      </div>
+    </form>
+  </div>
 </main>
