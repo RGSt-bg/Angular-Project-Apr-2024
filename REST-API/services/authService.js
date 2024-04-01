@@ -23,8 +23,9 @@ exports.register = async (userData) => {
 };
 
 exports.login = async ({ email, password }) => {
+console.log('authService: login', email, password);
     const user = await User.findOne({ email })
-
+console.log(user);
     if (!user) {
         throw new Error('Email or password is invalid!');
     }

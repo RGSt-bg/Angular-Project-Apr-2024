@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema({
         match: [/^[a-zA-Z0-9]+$/, 'Password should be alphanumeric'],
         minLength: [4, 'Password is too short'],
     },
-    buyedList: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Stone'
-    }]
+    // buyedList: [{
+    //     type: mongoose.Types.ObjectId,
+    //     ref: 'Stone'
+    // }]
 });
 
 userSchema.pre('save', async function() {
