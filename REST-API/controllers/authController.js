@@ -8,18 +8,40 @@ router.get('/register', isGuest, (req, res) => {
     res.render('auth/register');
 });
 
-router.post('/register', isGuest, async (req, res) => {
+// Post register for back-end
+// router.post('/register', isGuest, async (req, res) => {
+//     const userData = req.body;
+//     console.log('authController -> register: ', userData);
+
+//     try {
+//     const token = await authService.register(userData);
+
+//     res.cookie('auth', token);
+//     res.redirect('/');
+//     }
+//     catch(err) {
+//         res.render('auth/register', { ...userData, error: getErrorMessage(err) });
+//     }
+// });
+
+// Post register for front-end
+router.post('/register', async (req, res) => {
     const userData = req.body;
-    console.log('authController -> login: ', userData);
 
     try {
     const token = await authService.register(userData);
 
     res.cookie('auth', token);
-    res.redirect('/');
+    const response = {
+        success: true,
+        message: 'Registration successfully!',
+        token: token,
+      };
+    
+      res.send(JSON.stringify(response));
     }
-    catch(err) {
-        res.render('auth/register', { ...userData, error: getErrorMessage(err) });
+    catch (err){
+        res.send(JSON.stringify({message: getErrorMessage(err)}));
     }
 });
 

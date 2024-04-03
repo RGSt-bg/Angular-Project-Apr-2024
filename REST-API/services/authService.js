@@ -5,12 +5,10 @@ const User = require('../models/User');
 const { SECRET } = require('../config');
 
 exports.register = async (userData) => {
-console.log('authService: register', userData);
     if (userData.password !== userData.rePassword)
         throw new Error('Password missmatch!');
     
     const user = await User.findOne({ email: userData.email});
-console.log('authService: register -> user', user);
     if (user) {
         throw new Error('User already exists!');
     }
@@ -18,7 +16,6 @@ console.log('authService: register -> user', user);
     const createdUser = await User.create(userData);
 
     const token = await generateToken(createdUser);
-console.log('authService: register -> token: ', token);
 
     return token; //In this case we must to delete bellow row!!!
 
