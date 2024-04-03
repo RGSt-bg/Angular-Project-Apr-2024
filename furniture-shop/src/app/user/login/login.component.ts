@@ -36,24 +36,4 @@ export class LoginComponent {
       }
     );
   }
-
-  // constructor(private userService: UserService, private router: Router, private errorService: ErrorService) {}
-
-  // login(form: NgForm): void {
-  //   if (form.invalid) {
-  //     console.log('Invalid data in form!');
-  //     return
-  //   }
-  //   const { email, password } = form.value;
-
-  //   this.userService.login(email, password).subscribe({
-  //     next: (res) => {
-  //       this.router.navigate(['/home'])
-  //     },
-  //     error: (err) => {
-  //       console.log(err)
-  //       this.errorService.setError(err)
-  //     }
-  //   })
-  // }
 }
