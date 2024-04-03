@@ -91,9 +91,28 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/logout', isAuth, (req, res) => {
-    res.clearCookie('auth');
-    res.redirect('/');
+// Get logout for back-end
+// router.get('/logout', isAuth, (req, res) => {
+//     res.clearCookie('auth');
+//     res.redirect('/');
+// });
+
+// Post logout for front-end
+router.post('/logout', (req, res) => {
+
+    try {
+        res.clearCookie('auth');
+
+        const response = {
+            success: true,
+            message: 'Logged off successfully!',
+          };
+        
+        res.send(JSON.stringify(response));
+    }
+    catch (err){
+        res.send(JSON.stringify({message: getErrorMessage(err)}));
+    }
 });
 
 module.exports = router;
