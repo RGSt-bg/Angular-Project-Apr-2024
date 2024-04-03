@@ -11,10 +11,22 @@ import { UserModule } from './user/user.module';
 import { StaticModule } from './static/static.module';
 import { MainComponent } from './main/main.component';
 import { appInterceptorProvider } from './app.interceptor';
+import { UserRoutingModule } from './user/user-routing.module';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent],
-  imports: [BrowserModule, UserModule, CoreModule, SharedModule, FurnitureModule, StaticModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, MainComponent, AuthenticateComponent],
+  imports: [
+    BrowserModule,
+    UserModule,
+    CoreModule,
+    SharedModule,
+    FurnitureModule,
+    StaticModule,
+    HttpClientModule,
+    UserRoutingModule,
+    AppRoutingModule,
+  ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent],
 })

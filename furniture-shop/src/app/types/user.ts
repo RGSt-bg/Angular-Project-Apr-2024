@@ -7,8 +7,8 @@ export interface User {
   __v: number;
 }
 
-export interface UserForAuth {
-  email: string;
-  password: string;
-  // id: string;
-}
+// export interface UserForAuth {
+//   email: string;
+//   password: string;
+//   // id: string;
+// }
