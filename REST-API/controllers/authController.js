@@ -10,6 +10,7 @@ router.get('/register', isGuest, (req, res) => {
 
 router.post('/register', isGuest, async (req, res) => {
     const userData = req.body;
+    console.log('authController -> login: ', userData);
 
     try {
     const token = await authService.register(userData);
@@ -22,22 +23,49 @@ router.post('/register', isGuest, async (req, res) => {
     }
 });
 
-router.get('/login', isGuest, (req, res) => {
+// Get login for back-end
+// router.get('/login', isGuest, (req, res) => {
+//     res.render('auth/login');
+// });
 
+// Get login for front-end
+router.get('/login', (req, res) => {
     res.render('auth/login');
 });
 
-router.post('/login', isGuest, async (req, res) => {
-    const loginData = req.body;
+// Post login for back-end
+// router.post('/login', isGuest, async (req, res) => {
+//     const loginData = req.body;
 
+//     try {
+//         const token = await authService.login(loginData);
+
+//         res.cookie('auth', token);
+//         res.redirect('/');
+//     }
+//     catch (err){
+//         res.render('auth/login', { ...loginData, error: getErrorMessage(err) });
+//     }
+// });
+
+// Post login for front-end
+router.post('/login', async (req, res) => {
+    const loginData = req.body;
     try {
         const token = await authService.login(loginData);
 
         res.cookie('auth', token);
-        res.redirect('/');
+        const response = {
+            success: true,
+            message: 'Logged in successfully!',
+            token: token,
+          };
+        
+          res.cookie('auth', token);
+          res.send(JSON.stringify(response));
     }
     catch (err){
-        res.render('auth/login', { ...loginData, error: getErrorMessage(err) });
+        res.send(JSON.stringify({message: getErrorMessage(err)}));
     }
 });
 
