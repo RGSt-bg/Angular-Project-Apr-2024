@@ -7,7 +7,7 @@ import { UserService } from '../user/user.service';
   styleUrls: ['./authenticate.component.css'],
 })
 export class AuthenticateComponent implements OnInit {
-  isAuthenticating = true;
+  // isAuthenticating = true;
 
   constructor(private userService: UserService) {}
 
@@ -23,6 +23,6 @@ export class AuthenticateComponent implements OnInit {
     //     this.isAuthenticating = false;
     //   },
     // });
-    this.isAuthenticating = false;
+    // this.isAuthenticating = false;
   }
 }

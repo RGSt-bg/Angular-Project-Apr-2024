@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService implements OnDestroy {
-  private user$$ = new BehaviorSubject<User | undefined>(undefined);
+  public user$$ = new BehaviorSubject<User | undefined>(undefined);
   private user$ = this.user$$.asObservable();
 
   user: User | undefined;
@@ -18,6 +18,8 @@ export class UserService implements OnDestroy {
   userSubscription: Subscription;
 
   get isLogged(): boolean {
+console.log(this.user);
+console.log(!!this.user);
     return !!this.user;
   }
 
@@ -35,11 +37,11 @@ export class UserService implements OnDestroy {
       ));
   }
 
-  getProfile() {
-    return this.http
-      .get<User>('/api/users/profile')
-      .pipe(tap((user) => this.user$$.next(user)));
-  }
+  // getProfile() {
+  //   return this.http
+  //     .get<User>('/api/users/profile')
+  //     .pipe(tap((user) => this.user$$.next(user)));
+  // }
 
   // Jen's code
   //   login(username: string, password: string) {
