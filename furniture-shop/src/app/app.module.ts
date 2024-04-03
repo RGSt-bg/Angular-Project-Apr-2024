@@ -12,11 +12,11 @@ import { StaticModule } from './static/static.module';
 import { MainComponent } from './main/main.component';
 import { appInterceptorProvider } from './app.interceptor';
 import { UserRoutingModule } from './user/user-routing.module';
-import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, AuthenticateComponent],
+  declarations: [AppComponent, MainComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     UserModule,
     CoreModule,
@@ -25,7 +25,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     StaticModule,
     HttpClientModule,
     UserRoutingModule,
-    AppRoutingModule,
+    // AppRoutingModule,
   ],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent],

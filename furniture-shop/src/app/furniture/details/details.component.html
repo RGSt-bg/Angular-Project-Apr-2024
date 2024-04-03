@@ -40,20 +40,20 @@
             <span id="details-description">{{ furniture.description }}</span>
           </p>
         </div>
-        <!--Edit and Delete are only for creator-->
-        <div id="action-buttons">
-          <!-- {{#if isLoggedIn}}
-                    {{#if isOwner}} -->
-          <button (click)="editFurniture()" class="details-btn">Edit</button>
-          <button (click)="deleteFurniture()" class="details-btn">Delete</button>
-          <!-- {{!-- {{else}}
-                    {{#if amISignedUp}}
-          <p id="already-liked">You already liked this stone!</p>
-          {{else}}
-          <a href="/like/{{ creator._id }}" class="details-btn">Buy</a>
-          {{/if}} --}}
-                    {{/if}}
-                    {{/if}} -->
+        <!--Edit and Delete are only for owner-->
+        <div id="action-buttons" *ngIf="isLoggedIn">
+          <span *ngIf="isOwner">
+            <button (click)="editFurniture()" class="details-btn">Edit</button>
+            <button (click)="deleteFurniture()" class="details-btn">Delete</button>
+            <!-- {{!-- {{else}}
+              {{#if amISignedUp}}
+              <p id="already-liked">You already liked this stone!</p>
+              {{else}}
+              <a href="/like/{{ creator._id }}" class="details-btn">Buy</a>
+              {{/if}} --}}
+              {{/if}}
+              {{/if}} -->
+          </span>
         </div>
       </div>
     </section>

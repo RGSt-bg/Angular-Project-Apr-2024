@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-details',
@@ -11,9 +12,11 @@ export class DetailsComponent implements OnInit {
   furnitureId: string = '';
   furniture: any = {};
   calledFrom: string = '';
+  isOwner: string = '';
 
   constructor(
     private apiService: ApiService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -27,8 +30,13 @@ export class DetailsComponent implements OnInit {
         .getFurnitureDetails(this.furnitureId)
         .subscribe((furniture) => {
           this.furniture = furniture;
+          this.isOwner = this.furniture.isOwner;
         });
     });
+  }
+
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
   }
 
   deleteFurniture() {

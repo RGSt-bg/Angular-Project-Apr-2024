@@ -15,15 +15,21 @@ export class HeaderComponent {
   }
 
   logout() {
-    this.userService.logout().subscribe({
-      next: () => {
-        this.userService.user$$.next(undefined);
-        this.router.navigate(['/home']);
+    this.userService.logout().subscribe(
+      (response: any) => {
+        if (response.success) {
+          this.router.navigate(['/home']);
+          alert('You are logged off successfully!');
+        } else {
+          // console.error('Logout error:', response.message);
+          alert(response.message);
+        }
       },
-      error: (err) => {
-        console.error('Logout error:', err);
-        this.router.navigate(['/home']);
-      },
-    });
+      (error) => {
+        // Network errors
+        console.error('Logout error:', error);
+        alert('Ops! Something went wrong!');
+      }
+    );
   }
 }
